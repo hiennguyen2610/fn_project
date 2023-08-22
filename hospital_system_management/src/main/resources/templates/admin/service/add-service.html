@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- add-department24:07-->
+<head>
+    <title>Thêm chuyên khoa</title>
+    <div th:insert="admin/template/menu :: libs"></div>
+
+</head>
+
+<body>
+<div class="main-wrapper">
+    <div th:insert="admin/template/menu :: headeradmin"></div>
+    <div th:insert="admin/template/menu :: menu"></div>
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h4 class="page-title">Add Service</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <form action="#" id="create-speciality">
+                        <div class="form-group">
+                            <label for="name">Service Name</label>
+                            <input class="form-control" type="text" id="name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input class="form-control" type="number" id="price" name="name">
+                            <span class="errors" id="price_error">giá tiền không được để trống</span>
+                        </div>
+                        <div class="m-t-20 text-center">
+                            <button class="btn btn-primary submit-btn" type="submit" id="save-speciality">Create Service</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sidebar-overlay" data-reff=""></div>
+
+<!--    Link js create speciality-->
+<!--    <script th:src="@{/jsmain/admin/create-speciality.js}"></script>-->
+
+
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script th:src="@{/js/admin-popper.min.js}"></script>
+<script th:src="@{/js/admin-bootstrap.min.js}"></script>
+<script th:src="@{/js/admin-select2.min.js}"></script>
+<script th:src="@{/js/admin-app.js}"></script>
+</body>
+<script th:inline="javascript">
+    $(document).ready(function() {
+        // Validation create speciality
+        $("#create-speciality").validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 3,
+                }
+            },
+            messages: {
+                name: {
+                    required: "Vui lòng nhập tên dịch vụ",
+                    minlength: "Tên dịch vụ phải có ít nhất 3 ký tự",
+                }
+            },
+        });
+
+        // Function create speciality
+        $("#save-speciality").click(function (event) {
+            event.preventDefault();
+            let isValidCreatForm=$("#create-speciality").valid()
+            if (!isValidCreatForm){
+                return
+            }
+            let name = $("#create-speciality #name").val();
+            let price = $("#create-speciality #price").val();
+            if(price == ""){
+                alert(2)
+                document.getElementById("price_error").style.display = 'block';
+                return;
+            }
+            console.log(name);
+            let requestData = {
+                name: name,
+                price: price
+            };
+            $.ajax({
+                url: '/api/v1/service/admin/create',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(requestData),
+                success: function(response) {
+                    alert("Thêm dịch vụ thành công!")
+                    window.location.href="http://localhost:8080/admin/service"
+                },
+                error: function(xhr, status, error) {
+                    alert(xhr.responseJSON.message)
+                }
+            });
+        });
+    })
+</script>
+
+<!-- add-department24:07-->
+</html>

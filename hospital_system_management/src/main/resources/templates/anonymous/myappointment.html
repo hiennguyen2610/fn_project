@@ -1,0 +1,248 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+		<div th:insert="anonymous/template/menu :: libs"></div>
+		<script src="js/appointment.js"></script>
+		<script>
+			window.onload = function(){
+				loadAllSpeciality();
+			}
+		</script>
+    </head>
+    <body>
+
+	<div th:insert="anonymous/template/menu :: menu"></div>
+		
+		<!-- Error Page -->
+		<section class="error-page section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row">
+                            <div class="col-sm-10">
+                                <input id="param" class="form-control" placeholder="nhập email hoặc số điện thoại của bạn">
+                            </div>
+                            <div class="col-sm-2">
+                                <button onclick="searchMyAppointment()" class=" btn-primary form-control">Tìm kiếm</button>
+                            </div>
+                        </div><br><br>
+                        <div class="tabs__pane -tab-item-1 is-tab-el-active">
+                            <div class="overflow-scroll scroll-bar-1">
+                                <table class="table table-striped custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Appointment ID</th>
+                                            <th>Patient Name</th>
+                                            <th>Doctor Name</th>
+                                            <th>Department</th>
+                                            <th>Appointment Date</th>
+                                            <th>Appointment Time</th>
+                                            <th>Status</th>
+                                            <th class="text-right">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="listApp">
+									<tr>
+										<td colspan="9"><h3>Không có dữ liệu lịch hẹn nào</h3></td>
+									</tr>
+<!--                                        <tr>-->
+<!--                                            <td>APT0001</td>-->
+<!--                                            <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""> Denise Stevens</td>-->
+<!--                                            <td>Henry Daniels</td>-->
+<!--                                            <td>Cardiology</td>-->
+<!--                                            <td>30 Dec 2018</td>-->
+<!--                                            <td>10:00am - 11:00am</td>-->
+<!--                                            <td><span class="custom-badge status-red">Inactive</span></td>-->
+<!--                                            <td class="text-right">-->
+<!--                                                <div class="dropdown dropdown-action">-->
+<!--                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>-->
+<!--                                                    <div class="dropdown-menu dropdown-menu-right">-->
+<!--                                                        <a class="dropdown-item" href="/admin/edit-appointment"><i class="fa fa-pencil m-r-5"></i> Edit</a>-->
+<!--                                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_appointment"><i class="fa fa-trash-o m-r-5"></i> Delete</a>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
+<!--    -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</section>	
+		<!--/ End Error Page -->
+		
+		<!-- Footer Area -->
+		<footer id="footer" class="footer ">
+			<!-- Footer Top -->
+			<div class="footer-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3 col-md-6 col-12">
+							<div class="single-footer">
+								<h2>About Us</h2>
+								<p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore dolore magna.</p>
+								<!-- Social -->
+								<ul class="social">
+									<li><a href="#"><i class="icofont-facebook"></i></a></li>
+									<li><a href="#"><i class="icofont-google-plus"></i></a></li>
+									<li><a href="#"><i class="icofont-twitter"></i></a></li>
+									<li><a href="#"><i class="icofont-vimeo"></i></a></li>
+									<li><a href="#"><i class="icofont-pinterest"></i></a></li>
+								</ul>
+								<!-- End Social -->
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-12">
+							<div class="single-footer f-link">
+								<h2>Quick Links</h2>
+								<div class="row">
+									<div class="col-lg-6 col-md-6 col-12">
+										<ul>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a></li>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About Us</a></li>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Services</a></li>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Our Cases</a></li>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Other Links</a></li>	
+										</ul>
+									</div>
+									<div class="col-lg-6 col-md-6 col-12">
+										<ul>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Consuling</a></li>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Finance</a></li>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Testimonials</a></li>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
+											<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact Us</a></li>	
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-12">
+							<div class="single-footer">
+								<h2>Open Hours</h2>
+								<p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>
+								<ul class="time-sidual">
+									<li class="day">Monday - Fridayp <span>8.00-20.00</span></li>
+									<li class="day">Saturday <span>9.00-18.30</span></li>
+									<li class="day">Monday - Thusday <span>9.00-15.00</span></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-6 col-12">
+							<div class="single-footer">
+								<h2>Newsletter</h2>
+								<p>subscribe to our newsletter to get allour news in your inbox.. Lorem ipsum dolor sit amet, consectetur adipisicing elit,</p>
+								<form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+									<input name="email" placeholder="Email Address" class="common-input" onfocus="this.placeholder = ''"
+										onblur="this.placeholder = 'Your email address'" required="" type="email">
+									<button class="button"><i class="icofont icofont-paper-plane"></i></button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--/ End Footer Top -->
+			<!-- Copyright -->
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-12">
+							<div class="copyright-content">
+								<p>© Copyright 2018  |  All Rights Reserved by <a href="https://www.wpthemesgrid.com" target="_blank">wpthemesgrid.com</a> </p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--/ End Copyright -->
+		</footer>
+		<!--/ End Footer Area -->
+
+
+
+		<div class="modal" id="chitietbenhan" aria-modal="false" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content" style="padding: 20px">
+					<div class="col-lg-12"><h4 class="page-title">Chi tiết bệnh án</h4></div>
+					<div id="ctbenhan" style="width: 100%;">
+						<table class="table table-striped">
+							<thead>
+							<tr>
+								<th>Tên dịch vụ</th>
+								<th>Giá tiền</th>
+								<th>Chi tiết</th>
+								<th>Kết quả</th>
+							</tr>
+							</thead>
+							<tbody id="listctdv">
+							</tbody>
+						</table>
+						<table class="table">
+							<thead>
+							<tr>
+								<th>Mô tả ngắn</th>
+								<td id="motangan"></td>
+							</tr>
+							<tr>
+								<th>Kết quả</th>
+								<td id="ketqua"></td>
+							</tr>
+							</thead>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button onclick="updateApp()" class="btn btn-primary save-update">print</button>
+						<button onclick="hideCtBenhAn()" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- jquery Min JS -->
+        <script src="js/jquery.min.js"></script>
+		<!-- jquery Migrate JS -->
+		<script src="js/jquery-migrate-3.0.0.js"></script>
+		<!-- jquery Ui JS -->
+		<script src="js/jquery-ui.min.js"></script>
+		<!-- Easing JS -->
+        <script src="js/easing.js"></script>
+		<!-- Color JS -->
+		<script src="js/colors.js"></script>
+		<!-- Popper JS -->
+		<script src="js/popper.min.js"></script>
+		<!-- Bootstrap Datepicker JS -->
+		<script src="js/bootstrap-datepicker.js"></script>
+		<!-- Jquery Nav JS -->
+        <script src="js/jquery.nav.js"></script>
+		<!-- Slicknav JS -->
+		<script src="js/slicknav.min.js"></script>
+		<!-- ScrollUp JS -->
+        <script src="js/jquery.scrollUp.min.js"></script>
+		<!-- Niceselect JS -->
+		<script src="js/niceselect.js"></script>
+		<!-- Tilt Jquery JS -->
+		<script src="js/tilt.jquery.min.js"></script>
+		<!-- Owl Carousel JS -->
+        <script src="js/owl-carousel.js"></script>
+		<!-- counterup JS -->
+		<script src="js/jquery.counterup.min.js"></script>
+		<!-- Steller JS -->
+		<script src="js/steller.js"></script>
+		<!-- Wow JS -->
+		<script src="js/wow.min.js"></script>
+		<!-- Magnific Popup JS -->
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<!-- Counter Up CDN JS -->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+		<!-- Bootstrap JS -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- Main JS -->
+		<script src="js/main.js"></script>
+    </body>
+</html>

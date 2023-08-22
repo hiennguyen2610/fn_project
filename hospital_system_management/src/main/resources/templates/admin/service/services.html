@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Department</title>
+    <div th:insert="admin/template/menu :: libs"></div>
+    <script th:src="@{/jsadmin/service.js}"></script>
+    <script>
+        window.onload = function(){
+            loadAllService(0);
+        }
+    </script>
+</head>
+
+<body>
+<div class="main-wrapper">
+    <div th:insert="admin/template/menu :: headeradmin"></div>
+    <div th:insert="admin/template/menu :: menu"></div>
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-5 col-5">
+                    <h4 class="page-title">Services</h4>
+                </div>
+                <div class="col-sm-7 col-7 text-right m-b-30">
+                    <a href="add-service" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Add Service</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Service Name</th>
+                                <th>Service price</th>
+                                <th class="text-right">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody id="listservie">
+                            </tbody>
+                        </table>
+                    </div>
+                    <nav aria-label="Page navigation example">
+                        <br>
+                        <ul class="pagination" id="listpage">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="update-service-modal">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Cập nhật dịch vụ</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <form action="#"  id="update-service">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="text" hidden="hidden" class="form-control" id="idservice"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name"/>
+                        </div>
+                        <div class="form-group">
+                            <label>price</label>
+                            <input type="text" class="form-control" id="price"/>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button id="btnupdateservice" type="submit" class="btn btn-primary save-update">Save</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script th:src="@{/js/admin-jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/admin-jquery.slimscroll.js}"></script>
+<script th:src="@{/js/admin-jquery.dataTables.min.js}"></script>
+<script th:src="@{/js/admin-app.js}"></script>
+
+<!--Thư viện swal-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+<!-- axios -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!-- select2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.6.0/pagination.min.js" integrity="sha512-GzbaI5EsNzdEUq6/2XLYpr1y9CUZRIVsUeWTAFgULtQa5jZ3Nug8i0nZKM6jp9NffBCZhymPPQFcF0DK+JkRpw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script th:inline="javascript">
+    $(document).ready(function() {
+        // Validation create speciality
+        $("#update-service").validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 3,
+                }
+            },
+            messages: {
+                name: {
+                    required: "Vui lòng nhập tên dịch vụ",
+                    minlength: "Tên dịch vụ phải có ít nhất 3 ký tự",
+                }
+            },
+        });
+
+        // Function create speciality
+        $("#btnupdateservice").click(function (event) {
+            event.preventDefault();
+            let isValidCreatForm=$("#update-service").valid()
+            if (!isValidCreatForm){
+                return
+            }
+            let id = $("#update-service #idservice").val();
+            let name = $("#update-service #name").val();
+            let price = $("#update-service #price").val();
+            console.log(name);
+            let requestData = {
+                id: id,
+                name: name,
+                price: price
+            };
+            $.ajax({
+                url: '/api/v1/service/admin/update',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(requestData),
+                success: function(response) {
+                    alert("Cập nhật dịch vụ thành công!")
+                    window.location.reload();
+                },
+                error: function(xhr, status, error) {
+                    alert(xhr.responseJSON.message)
+                }
+            });
+        });
+    })
+</script>
+
+
+</body>
+
+</html>

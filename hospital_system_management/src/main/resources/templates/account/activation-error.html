@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kích Hoạt Tài Khoản</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+      /*background-image: url('/assets/img/icon/abstract-art-colorful-painting-art-modern-airplane-landing-airport-background-illustration-generative-ai_438099-11317.png');*/
+      /*background-size: cover;*/
+      /*background-position: center;*/
+    }
+
+    .activation-content {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      background-color:coral ;
+    }
+
+    img {
+      max-width: 200px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #count-down {
+      font-size: 36px;
+      color: #007bff;
+    }
+  </style>
+  <script>
+    // Hàm đếm ngược và chuyển hướng về trang chủ
+    function countDownAndRedirect(seconds) {
+      const countDownElement = document.getElementById("count-down");
+
+      let remainingSeconds = seconds;
+      countDownElement.innerText = remainingSeconds;
+
+      const intervalId = setInterval(() => {
+        remainingSeconds--;
+        countDownElement.innerText = remainingSeconds;
+
+        if (remainingSeconds <= 0) {
+          clearInterval(intervalId);
+          window.location.href = "/";
+        }
+      }, 1000);
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      countDownAndRedirect(5);
+    });
+  </script>
+</head>
+<body>
+<div class="container activation-content d-flex">
+  <img th:src="@{/assets/img/newlogo.png}" alt="logo">
+  <h1>Tài Khoản Đã Được Kích Hoạt Trước Đó, Bạn Sẽ Được Chuyển Về Trang Chủ Sau <span id="count-down">5</span> Giây</h1>
+</div>
+</body>
+</html>
