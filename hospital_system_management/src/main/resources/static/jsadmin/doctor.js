@@ -42,6 +42,8 @@ async function searchDoctors(page) {
         headers: new Headers({
         })
     });
+
+    // Lưu kq và chuyển thành json
     var result = await response.json();
     var list = result.content;
     var totalPage = result.totalPages
