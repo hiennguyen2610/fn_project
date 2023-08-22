@@ -19,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -92,6 +93,7 @@ public class AuthenticationController {
     }
 
 
+    @Async
     @PostMapping("/signupDoctor")
     public ResponseEntity<?> registerDoctor(@Valid @RequestBody RegistrationRequest request) {
         return userRepository.findByEmail(request.getEmail())

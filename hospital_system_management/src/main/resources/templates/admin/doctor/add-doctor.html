@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Doctors</title>
+    <title>Thêm bác sĩ</title>
     <div th:insert="admin/template/menu :: libs"></div>
 </head>
 
@@ -14,7 +14,7 @@
         <div class="content">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <h4 class="page-title">Add Doctor</h4>
+                    <h4 class="page-title">Thêm bác sĩ</h4>
                 </div>
             </div>
             <div class="row">
@@ -23,8 +23,8 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" id="name" placeholder="Your name"
+                                    <label>Tên <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="name" placeholder="Nhập tên bác sĩ"
                                            name="name">
                                 </div>
                             </div>
@@ -32,77 +32,79 @@
                                 <div class="form-group">
                                     <label>Email <span class="text-danger">*</span></label>
                                     <input class="form-control" type="email" name="email" id="email"
-                                           placeholder="Your email">
+                                           placeholder="Nhập email">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Password</label>
+                                    <label>Mật khẩu <span class="text-danger">*</span></label>
                                     <input class="form-control" name="password" type="password" id="password"
-                                           placeholder="Password">
+                                           placeholder="Nhập mật khẩu">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Confirm Password</label>
+                                    <label>Nhập lại mật khẩu <span class="text-danger">*</span></label>
                                     <input class="form-control" type="password" name="re-pass" id="re-pass"
-                                           placeholder="Re-Password">
+                                           placeholder="Nhập lại mật khẩu">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div>
-                                        <label>Date of Birth</label>
+                                        <label>Ngày sinh <span class="text-danger">*</span></label>
                                         <input type="date" class="form-control" id="dob" name="dob">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Phone </label>
-                                    <input class="form-control" type="text" id="phone">
+                                    <label>Số điện thoại <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="phone" name="phone">
                                 </div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="gender">Gender</label><br>
-                                    <select id="gender" name="gender">
+                                    <label for="gender">Giới tính <span class="text-danger">*</span></label><br>
+                                    <select id="gender" name="gender" class="w-100" style="border-radius: 5px; height: 40px">
                                         <option th:each="gender : ${T(com.example.hospital_management.statics.Gender).values()}"
                                                 th:value="${gender}"
-                                                th:text="${#strings.capitalize(gender.toString().toLowerCase())}">
+                                                th:text="${#strings.capitalize(gender.name.toString())}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="doctorLevel">Trình độ <span class="text-danger">*</span></label><br>
+                                    <select id="doctorLevel" name="doctorLevel" class="w-100 py-1" style="border-radius: 5px; height: 40px">
+                                        <option th:each="level : ${T(com.example.hospital_management.statics.DoctorLevel).values()}"
+                                                th:value="${level}"
+                                                th:text="${#strings.capitalize(level.name.toString())}">
                                         </option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="speciality" class="form-label">Chuyên khoa</label>
-                                <select class="form-control" id="speciality" multiple="multiple" name="speciality"
+                                <label for="speciality" class="form-label">Chuyên khoa <span class="text-danger">*</span></label>
+                                <select class="form-control py-2" id="speciality" multiple="multiple" name="speciality"
                                         required>
                                     <option th:each="speciality : ${listAllSpecialities}" th:value="${speciality.id}"
-                                            th:text="${speciality.name}">Backend
+                                            th:text="${speciality.name}">
                                     </option>
                                 </select>
                             </div>
 
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="doctorLevel">Doctor Level</label><br>
-                                    <select id="doctorLevel" name="doctorLevel">
-                                        <option th:each="level : ${T(com.example.hospital_management.statics.DoctorLevel).values()}"
-                                                th:value="${level}"
-                                                th:text="${#strings.capitalize(level.toString().toLowerCase())}">
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
+
 
                             <div class="col-sm-12">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label>Address</label>
+                                            <label>Địa chỉ <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control " id="address">
                                         </div>
                                     </div>
@@ -113,28 +115,23 @@
 
                         </div>
                         <div class="form-group">
-                            <label>Short Biography</label>
+                            <label>Giới thiệu ngắn</label>
                             <textarea class="form-control" rows="3" cols="30" id="introduce"></textarea>
                         </div>
 
                         <div class="mt-30">
-                            <div class="lh-1 text-16 text-light-1">Images</div>
+                            <div class="lh-1 text-16 text-light-1">Ảnh đại diện</div>
                             <div class="row x-gap-20 y-gap-20 pt-15">
                                 <div class="col-auto">
                                     <div class="w-200">
                                         <div id="avatar-doctor"
                                              class="d-flex ratio ratio-1:1">
-
                                             <button class="btn-upload-image flex-center flex-column text-center bg-blue-2 h-full w-1/1 absolute rounded-4 border-type-1">
                                                 <div class="icon-upload-file text-40 text-blue-1 mb-10"></div>
-<!--                                                <div class="text-blue-1 fw-500">Upload-->
-<!--                                                    Images-->
-<!--                                                </div>-->
                                             </button>
                                         </div>
                                         <div class="text-center mt-10 text-14 text-light-1">
-                                            <input type="file" id="fileInput"
-                                            >
+                                            <input type="file" id="fileInput" >
                                         </div>
                                     </div>
                                 </div>
@@ -142,221 +139,11 @@
                             </div>
                         </div>
                         <div class="m-t-20 text-center">
-                            <button class="btn btn-primary submit-btn" type="submit" name="signup" id="signup">Create
-                                Doctor
+                            <button class="btn btn-primary submit-btn" type="submit" name="signup" id="signup">Tạo bác sĩ
                             </button>
                         </div>
                     </form>
 
-                </div>
-            </div>
-        </div>
-        <div class="notification-box">
-            <div class="msg-sidebar notifications msg-noti">
-                <div class="topnav-dropdown-header">
-                    <span>Messages</span>
-                </div>
-                <div class="drop-scroll msg-list-scroll" id="msg_list">
-                    <ul class="list-box">
-                        <li>
-                            <a href="../chat.html">
-                                <div class="list-item">
-                                    <div class="list-left">
-                                        <span class="avatar">R</span>
-                                    </div>
-                                    <div class="list-body">
-                                        <span class="message-author">Richard Miles </span>
-                                        <span class="message-time">12:28 AM</span>
-                                        <div class="clearfix"></div>
-                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../chat.html">
-                                <div class="list-item new-message">
-                                    <div class="list-left">
-                                        <span class="avatar">J</span>
-                                    </div>
-                                    <div class="list-body">
-                                        <span class="message-author">John Doe</span>
-                                        <span class="message-time">1 Aug</span>
-                                        <div class="clearfix"></div>
-                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../chat.html">
-                                <div class="list-item">
-                                    <div class="list-left">
-                                        <span class="avatar">T</span>
-                                    </div>
-                                    <div class="list-body">
-                                        <span class="message-author"> Tarah Shropshire </span>
-                                        <span class="message-time">12:28 AM</span>
-                                        <div class="clearfix"></div>
-                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../chat.html">
-                                <div class="list-item">
-                                    <div class="list-left">
-                                        <span class="avatar">M</span>
-                                    </div>
-                                    <div class="list-body">
-                                        <span class="message-author">Mike Litorus</span>
-                                        <span class="message-time">12:28 AM</span>
-                                        <div class="clearfix"></div>
-                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../chat.html">
-                                <div class="list-item">
-                                    <div class="list-left">
-                                        <span class="avatar">C</span>
-                                    </div>
-                                    <div class="list-body">
-                                        <span class="message-author"> Catherine Manseau </span>
-                                        <span class="message-time">12:28 AM</span>
-                                        <div class="clearfix"></div>
-                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../chat.html">
-                                <div class="list-item">
-                                    <div class="list-left">
-                                        <span class="avatar">D</span>
-                                    </div>
-                                    <div class="list-body">
-                                        <span class="message-author"> Domenic Houston </span>
-                                        <span class="message-time">12:28 AM</span>
-                                        <div class="clearfix"></div>
-                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../chat.html">
-                                <div class="list-item">
-                                    <div class="list-left">
-                                        <span class="avatar">B</span>
-                                    </div>
-                                    <div class="list-body">
-                                        <span class="message-author"> Buster Wigton </span>
-                                        <span class="message-time">12:28 AM</span>
-                                        <div class="clearfix"></div>
-                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../chat.html">
-                                <div class="list-item">
-                                    <div class="list-left">
-                                        <span class="avatar">R</span>
-                                    </div>
-                                    <div class="list-body">
-                                        <span class="message-author"> Rolland Webber </span>
-                                        <span class="message-time">12:28 AM</span>
-                                        <div class="clearfix"></div>
-                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../chat.html">
-                                <div class="list-item">
-                                    <div class="list-left">
-                                        <span class="avatar">C</span>
-                                    </div>
-                                    <div class="list-body">
-                                        <span class="message-author"> Claire Mapes </span>
-                                        <span class="message-time">12:28 AM</span>
-                                        <div class="clearfix"></div>
-                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../chat.html">
-                                <div class="list-item">
-                                    <div class="list-left">
-                                        <span class="avatar">M</span>
-                                    </div>
-                                    <div class="list-body">
-                                        <span class="message-author">Melita Faucher</span>
-                                        <span class="message-time">12:28 AM</span>
-                                        <div class="clearfix"></div>
-                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../chat.html">
-                                <div class="list-item">
-                                    <div class="list-left">
-                                        <span class="avatar">J</span>
-                                    </div>
-                                    <div class="list-body">
-                                        <span class="message-author">Jeffery Lalor</span>
-                                        <span class="message-time">12:28 AM</span>
-                                        <div class="clearfix"></div>
-                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../chat.html">
-                                <div class="list-item">
-                                    <div class="list-left">
-                                        <span class="avatar">L</span>
-                                    </div>
-                                    <div class="list-body">
-                                        <span class="message-author">Loren Gatlin</span>
-                                        <span class="message-time">12:28 AM</span>
-                                        <div class="clearfix"></div>
-                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../chat.html">
-                                <div class="list-item">
-                                    <div class="list-left">
-                                        <span class="avatar">T</span>
-                                    </div>
-                                    <div class="list-body">
-                                        <span class="message-author">Tarah Shropshire</span>
-                                        <span class="message-time">12:28 AM</span>
-                                        <div class="clearfix"></div>
-                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="topnav-dropdown-footer">
-                    <a href="../chat.html">See all messages</a>
                 </div>
             </div>
         </div>
@@ -457,6 +244,9 @@
                 error.insertAfter(element.parent());
             },
             rules: {
+                "name" : {
+                    required: true
+                },
                 "email": {
                     required: true,
                     email: true
@@ -467,22 +257,36 @@
                 "re-pass": {
                     required: true,
                     equalTo: "#password"
+                },
+                "dob": {
+                    required: true,
+                },
+                "phone": {
+                    required: true,
                 }
             },
             messages: {
+                "name": {
+                    required: "Vui lòng nhập tên",
+                },
                 "email": {
-                    required: "Enter your email",
-                    email: "Incorrect email format"
+                    required: "Vui lòng nhập email",
+                    email: "Email không đúng định dạng"
                 },
                 "password": {
-                    required: "Enter your password"
+                    required: "Vui lòng nhập password"
                 },
                 "re-pass": {
-                    required: "Repeat your password",
-                    equalTo: "Re-password incorrect"
+                    required: "Vui lòng nhập lại password",
+                    equalTo: "Nhập lại mật khẩu chưa chính xác"
+                },
+                "dob": {
+                    required: "Vui lòng chọn ngày sinh",
+                },
+                "phone": {
+                    required: "Vui lòng nhập số điện thoại",
                 }
             }
-
         })
 
         async function uploadImageAndCreateDoctor() {
@@ -531,14 +335,14 @@
                 contentType: "application/json",
                 data: JSON.stringify(newDoctor),
                 success: function (response) {
-                    toastr.success("Create doctor success!");
+                    $('#signup').prop('disabled', false);
+                    toastr.success("Tạo bác sĩ thành công!");
                     setTimeout(function () {
-                        $('#submitBtn').prop('disabled', false);
-                        window.location.reload();
-                    }, 800)
+                        window.location.href="http://localhost:8080/admin/doctors"
+                    }, 100)
                 },
                 error: function () {
-                    toastr.warning("Create doctor not success!");
+                    toastr.warning("Tạo bác sĩ thất bại!");
                 }
             });
         }
@@ -562,62 +366,6 @@
             $('#signup').prop('disabled', true);
             uploadImageAndCreateDoctor();
         })
-
-
-        // $('#signup').click(function (event) {
-        //     event.preventDefault();
-        //
-        //     var isValidForm = $('.register-form').valid();
-        //     if (!isValidForm) return;
-        //
-        //     var name = $('#name').val();
-        //     var email = $('#email').val();
-        //     var phone = $('#phone').val();
-        //     var password = $('#password').val();
-        //     var address = $('#address').val();
-        //     var introduce = $('#introduce').val();
-        //     var dob = $('#dob').val();
-        //     var gender = $('#gender').val();
-        //     var avatar = $('#avatar').val();
-        //     var doctorLevel = $('#doctorLevel').val();
-        //     var selectedSpecialities = [];
-        //     $('#speciality option:selected').each(function () {
-        //         selectedSpecialities.push($(this).val());
-        //     })
-        //
-        //     var formData = {
-        //         name: name,
-        //         email: email,
-        //         phone: phone,
-        //         password: password,
-        //         address: address,
-        //         introduce: introduce,
-        //         dob: dob,
-        //         gender: gender,
-        //         avatar: avatar,
-        //         specialityIds: selectedSpecialities,
-        //         doctorLevel: doctorLevel
-        //
-        //     };
-        //
-        //     $.ajax({
-        //         url: '/api/v1/authentication/signupDoctor',
-        //         type: 'POST',
-        //         contentType: "application/json; charset=utf-8",
-        //         data: JSON.stringify(formData),
-        //         success: function (response) {
-        //             console.log(response);
-        //             localStorage.setItem('formData', JSON.stringify(formData));
-        //             toastr.success('Đăng ký thành công!');
-        //             window.location.href = 'http://localhost:8080/admin/doctors';
-        //         },
-        //         error: function (data) {
-        //             toastr.error("Đăng ký không thành công!");
-        //         }
-        //     });
-        // })
     })
 </script>
-
-<!-- add-doctor24:06-->
 </html>

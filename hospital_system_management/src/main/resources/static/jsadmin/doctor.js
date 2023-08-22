@@ -1,27 +1,42 @@
-async function loadAllSpecialy() {
+async function loadAllSpeciality() {
+    // Gán api vào biến
     var url = 'http://localhost:8080/api/v1/speciality/admin/find-all';
+
+    // Sử dụng hàm fetch gửi yêu cầu GET đến API trên
     const response = await fetch(url, {
         method: 'GET',
         headers: new Headers({
         })
     });
+
+    // Chuyển dữ liệu phản hồi về dạng Json và lưu vào biến mới
     var list = await response.json();
     var main = '<option value="">Tất cả chuyên khoa</option>';
+
+    // Tạo vòng lặp để lấy danh sách chuyên khoa
     for (i = 0; i < list.length; i++) {
+        // Lấy ra tên chuyên khoa tương ứng với id
         main += ` <option value="${list[i].id}">${list[i].name}</option>`
     }
+
+    // Thay thế ô select bằng nội dung được chọn
     document.getElementById("listSpecialy").innerHTML = main
 }
 
-
+// Tìm kiếm bác sĩ
 async function searchDoctors(page) {
+    // Lấy giá trị trong ô search
     var param = document.getElementById("param").value
+    // Lấy giá trị trong ô chọn chuyên khoa
     var special = document.getElementById("listSpecialy").value
-
+    // Gán API vào biến (nếu ko chọn chuyên khoa)
     var url = 'http://localhost:8080/api/v1/doctor/admin/all-page?param='+param+"&size=3&page="+page;
     if(special != "" && special != null){
+        // nếu chọn chuyên khoa
         url = 'http://localhost:8080/api/v1/doctor/admin/all-page?param='+param+'&idspecialy='+special+"&size=3&page="+page;
     }
+
+    // Sử dụng hàm fetch gửi yêu cầu GET đến API trên
     const response = await fetch(url, {
         method: 'GET',
         headers: new Headers({
@@ -40,6 +55,7 @@ async function searchDoctors(page) {
         main += `<tr>
                     <td>${list[i].user.name}</td>
                     <td>${ck}</td>
+<!--                    <td>${list[i].email}</td>-->
                     <td>${list[i].doctorLevel}</td>
                     <td>${list[i].user.gender}</td>
                     <td>${list[i].address}</td>
@@ -63,11 +79,13 @@ async function searchDoctors(page) {
     document.getElementById("listpage").innerHTML = mainpage
 }
 
+// Load thông tin doctor hiển thị lên form
 async function loadDetail(doctorId){
     $.ajax({
         url: "/api/v1/admin/doctor/" + doctorId,
         type: "GET",
         success: function (response) {
+            // $("#update-doctor #name").val(response.name)
             $("#update-doctor #phone").val(response.phone)
             $("#update-doctor #doctorLevel").val(response.doctorLevel)
             $("#update-doctor #address").val(response.address)
@@ -87,6 +105,7 @@ async function loadDetail(doctorId){
     })
 }
 
+// Xóa doctor
 async function deleteDoctor(doctorId){
     Swal.fire({
         title: 'Bạn có chắc muốn xóa bác sĩ này không?',

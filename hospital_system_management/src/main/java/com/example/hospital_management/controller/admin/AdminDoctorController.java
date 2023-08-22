@@ -33,25 +33,25 @@ public class AdminDoctorController {
     @Autowired
     private DoctorRepository doctorRepository;
 
-//    @GetMapping("/admin/doctors")
-//    public String doctorList(Model model) {
-//        List<DoctorResponse> doctorResponsePage = doctorService.getAllDoctorResponse();
-//        List<Speciality> specialityList = specialityService.getAllSpecialities();
-//        model.addAttribute("getAllDoctor", doctorResponsePage);
-//        model.addAttribute("listAllSpecialities", specialityList);
-//
-//        return "admin/doctor/doctors";
-//    }
-
     @GetMapping("/admin/doctors")
-    public String searchDoctor(Model model, DoctorSearchRequest request) {
-        CommonResponse<?> commonResponse = doctorService.searchDoctor(request);
-        model.addAttribute("pageDoctorInfo", commonResponse);
-        model.addAttribute("listAllSpecialities", specialityService.findAll());
-        model.addAttribute("currentPage", request.getPageIndex());
-        model.addAttribute("pageSize", request.getPageSize());
+    public String doctorList(Model model) {
+        List<DoctorResponse> doctorResponsePage = doctorService.getAllDoctorResponse();
+        List<Speciality> specialityList = specialityService.getAllSpecialities();
+        model.addAttribute("getAllDoctor", doctorResponsePage);
+        model.addAttribute("listAllSpecialities", specialityList);
+
         return "admin/doctor/doctors";
     }
+
+//    @GetMapping("/admin/doctors")
+//    public String searchDoctor(Model model, DoctorSearchRequest request) {
+//        CommonResponse<?> commonResponse = doctorService.searchDoctor(request);
+//        model.addAttribute("pageDoctorInfo", commonResponse);
+//        model.addAttribute("listAllSpecialities", specialityService.findAll());
+//        model.addAttribute("currentPage", request.getPageIndex());
+//        model.addAttribute("pageSize", request.getPageSize());
+//        return "admin/doctor/doctors";
+//    }
 
     @GetMapping("/admin/add-doctor")
     public String addDoctor(Model model) {

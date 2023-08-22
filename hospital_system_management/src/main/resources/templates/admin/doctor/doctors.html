@@ -6,7 +6,7 @@
     <script th:src="@{/jsadmin/doctor.js}"></script>
     <script>
         window.onload = function(){
-            loadAllSpecialy();
+            loadAllSpeciality();
             searchDoctors(0);
         }
     </script>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-sm-8 col-9 text-right m-b-20">
                     <a href="/admin/add-doctor" class="btn btn-primary btn-rounded float-right"><i
-                            class="fa fa-plus"></i> Add Doctor</a>
+                            class="fa fa-plus"></i> Thêm bác sĩ</a>
                 </div>
             </div>
 
@@ -34,17 +34,17 @@
             <div class=" relative d-flex" style="margin-bottom: 20px">
                 <div class="row">
                     <div class="col-sm-4">
-                        <input id="param" class="form-control" type="text" placeholder="Search" style="width: 200px; border-radius: 40px; padding: 10px 20px">
+                        <input id="param" class="form-control" type="text" placeholder="Nhập tên bác sĩ" style="width: 300px; padding: 10px 20px">
                     </div>
                     <div class="col-sm-4">
-                        <select class="form-control" name="type" id="listSpecialy">
+                        <select class="form-control" name="type" id="listSpecialy" style="margin-left: 20px">
                             <option value=""></option>
                         </select>
                     </div>
                     <div class="col-sm-4">
                         <button onclick="searchDoctors()" class="btn btn-primary">
                             <i class="fas fa-search icon-search text-20 px-15 text-dark-1" id="icon-search-admin"></i>
-                            Search
+                            Tìm kiếm
                         </button>
                     </div>
                 </div>
@@ -56,58 +56,22 @@
                         <table class="table-4 -border-bottom col-12 table table-bordered table-hover table-striped ">
                             <thead class="bg-light-2">
                             <tr>
-                                <!--                                    <th>STT</th>-->
                                 <th>Tên</th>
                                 <th>Chuyên Khoa</th>
+<!--                                <th>Email</th>-->
                                 <th>Trình độ</th>
                                 <th>Giới tính</th>
                                 <th>Địa chỉ</th>
-                                <th>Actions</th>
+                                <th>Hành động</th>
                             </tr>
                             </thead>
                             <tbody id="listDoctor">
-
-                            <tr th:each="doctor:${pageDoctorInfo.data}">
-                                <td th:text="${doctor.name}">California, USA</td>
-
-                                <td th:with="specialities=${doctor.specialities}">
-                                    <div th:each="speciality:${specialities}" class="mb-2">
-                                            <span style="margin-right: 20px" class="rounded-100 py-1 px-10 text-center text-12 fw-500 bg-blue-1-05 text-blue-1"
-                                                  th:text="${speciality.name}"><br></span>
-                                    </div><br>
-                                </td>
-                                <td th:text="${doctor.doctorLevel}">California, USA</td>
-                                <td th:text="${doctor.gender}">California, USA</td>
-                                <td th:text="${doctor.address}"></td>
-
-                                <td class="text-right">
-                                    <div class="d-flex justify-content-between">
-                                        <a class="btn btn-link p-0 submit-update-btn" th:attr="doctor-id=${doctor.id}">
-                                            <i class="fa-solid fa-pencil fa-lg text-primary"></i>
-                                        </a>
-                                        <button type="submit" class="btn btn-link p-0 mr-2 submit-delete-btn"
-                                                th:attr="doctor-id=${doctor.id}">
-                                            <span><i class="fa-solid fa-trash-can fa-lg text-danger"></i></span>
-                                        </button>
-                                    </div>
-                                </td>
-
-
-                            </tr>
+<!--                            Danh sách bác sĩ-->
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-<!--            <th:block th:replace="fragments/pagination::pagination(${currentPage},${pageDoctorInfo})"></th:block>-->
-
-            <!--            <div class="row">-->
-            <!--                <div class="col-sm-12">-->
-            <!--                    <div class="see-all">-->
-            <!--                        <a class="see-all-btn" href="javascript:void(0);">Load More</a>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
             <nav aria-label="Page navigation example">
                 <br>
                 <ul class="pagination" id="listpage">
@@ -120,21 +84,7 @@
             </nav>
         </div>
     </div>
-    <div id="delete_doctor" class="modal fade delete-modal" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <img src="img/sent.png" alt="" width="50" height="46">
-                    <h3>Are you sure want to delete this Doctor?</h3>
-                    <div class="m-t-20"><a href="#" class="btn btn-white" data-dismiss="modal">Close</a>
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-<div class="sidebar-overlay" data-reff=""></div>
 
 <script th:src="@{/js/admin-jquery-3.2.1.min.js}"></script>
 <script th:src="@{/js/admin-jquery.slimscroll.js}"></script>
@@ -201,15 +151,15 @@
         },
         messages: {
             "phone": {
-                required: "* Enter a new phone",
-                maxlength: "Cannot be longer than 10 characters"
+                required: "Nhập số điện thoại mới",
+                maxlength: "Số điện thoại không vượt quá 10 kí tự"
             },
             "address": {
-                required: "* Enter address",
-                maxlength: "Cannot be longer than 255 characters"
+                required: "Nhập địa chỉ mới",
+                maxlength: "Địa chỉ phải ít hơn 255 kí tự"
             },
             "speciality": {
-                required: "* Select speciality",
+                required: "Chọn chuyên khoa mới",
             },
             "introduce": {
                 maxlength: "Cannot be longer than 65535 characters"
@@ -217,32 +167,7 @@
         }
     });
 
-    $(".submit-update-btn").click(function () {
-        let doctorId = $(this).attr("doctor-id");
-        console.log(doctorId)
-        $.ajax({
-            url: "/api/v1/admin/doctor/" + doctorId,
-            type: "GET",
-            success: function (response) {
-                $("#update-doctor #phone").val(response.phone)
-                $("#update-doctor #doctorLevel").val(response.doctorLevel)
-                $("#update-doctor #address").val(response.address)
-                $("#update-doctor #introduce").val(response.introduce)
-                $("#update-doctor #id").val(doctorId)
-                let specialities = [];
-                response.specialities.forEach(speciality => {
-                    specialities.push(speciality.id);
-                });
-                $("#update-doctor #speciality").val(specialities).trigger('change')
-                $("#update-doctor-modal").modal("show");
-            },
-            error: function (response) {
-                console.log(response)
-            }
-        })
-    })
     $(".save-update").click(function () {
-        // const doctorId = $('.submit-update-btn').attr("doctor-id")
         let doctorId = $("#update-doctor #iddoctorupdate").val()
         console.log(doctorId)
         let isValid = $("#update-doctor").valid()
@@ -272,7 +197,7 @@
                 window.location.href = "http://localhost:8080/admin/doctors"
             },
             error: function () {
-                toastr.warning("Update doctor not success!");
+                toastr.warning("Cập nhật bác sĩ thất bại!");
             }
         })
     })
