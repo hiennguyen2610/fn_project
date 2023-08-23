@@ -57,6 +57,7 @@ async function searchDoctors(page) {
         main += `<tr>
                     <td>${list[i].user.name}</td>
                     <td>${ck}</td>
+<!--                    TODO : chưa hiển thị được email và String name của doctorLevel, gender-->
 <!--                    <td>${list[i].email}</td>-->
                     <td>${list[i].doctorLevel}</td>
                     <td>${list[i].user.gender}</td>

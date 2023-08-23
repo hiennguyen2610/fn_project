@@ -240,7 +240,7 @@ async function loadAllSpeciality(){
     time = null;
     document.getElementById("datecs").innerHTML = ""
     document.getElementById("chooseDate").value = ""
-    document.getElementById("listTime").innerHTML = "please choose a doctor and date"
+    document.getElementById("listTime").innerHTML = "Vui lòng chọn giờ khám"
 }
 
 async function loadTime(){
@@ -390,6 +390,7 @@ var ctkList = [];
 var kqkList = [];
 var idBenhAn = -1;
 var idApps = -1;
+
 async function updateApp(){
     if(ctkList < 1){
         alert("Không có dịch vụ nào");

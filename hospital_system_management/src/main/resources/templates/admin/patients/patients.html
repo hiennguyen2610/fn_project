@@ -19,13 +19,13 @@
         <div class="content">
             <div class="row">
                 <div class="col-sm-4 col-3">
-                    <h4 class="page-title">Patients</h4>
+                    <h4 class="page-title">Bệnh nhân</h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4">
                     <label>&ThinSpace;</label>
-                    <input id="param" placeholder="tìm kiếm" class="form-control">
+                    <input id="param" placeholder="Nhập tên hoặc địa chỉ, số điện thoại" class="form-control">
                 </div>
                 <div class="col-sm-2">
                     <label>&ThinSpace;</label><br>
@@ -39,16 +39,16 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Patient Name</th>
-                                <th>Birth of date</th>
-                                <th>Phone</th>
-                                <th>address</th>
-                                <th>email</th>
-                                <th class="text-right">Action</th>
+                                <th>Tên bệnh nhân</th>
+                                <th>Ngày sinh</th>
+                                <th>Số điện thoại</th>
+                                <th>Địa chỉ</th>
+                                <th>Email</th>
+                                <th class="text-right">Bệnh án</th>
                             </tr>
                             </thead>
                             <tbody id="listPat">
-
+<!--                            List bệnh nhân-->
                             </tbody>
                         </table>
 
@@ -73,19 +73,19 @@
 <div class="modal" id="chitietbenhan" aria-modal="false" role="dialog">
     <div class="modal-dialog modal-xl">
         <div class="modal-content" style="padding: 20px">
-            <div class="col-lg-12"><h4 class="page-title">Chi tiết bệnh án</h4></div>
+            <div class="col-lg-12"><h4 class="page-title" style="text-align: center; font-weight: bold; margin-top: 20px">Chi tiết bệnh án</h4></div>
             <div id="ctbenhan" style="width: 100%;">
                 <div class="row">
                     <div class="col-6">
-                        <p>Họ tên: <span id="hoTen">Trần hiếu</span></p>
-                        <p>Ngày sinh: <span id="ngsinh">Trần hiếu</span></p>
+                        <p>Họ & tên: <span id="hoTen">Nguyễn Quang Hiển</span></p>
+                        <p>Ngày sinh: <span id="ngsinh">26/10/1998</span></p>
                     </div>
                     <div class="col-6">
-                        <p>Số điện thoại: <span id="sdt">Trần hiếu</span></p>
-                        <p>Địa chỉ: <span id="diachi">Trần hiếu</span></p>
+                        <p>Số điện thoại: <span id="sdt">0346156726</span></p>
+                        <p>Địa chỉ: <span id="diachi">Bắc Từ Liêm, Hà Nội</span></p>
                     </div>
                 </div>
-                <table class="table table-striped">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Tên dịch vụ</th>
@@ -110,8 +110,8 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button onclick="printBenhAn()" class="btn btn-primary save-update">print</button>
-                <button onclick="hideCtBenhAn()" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button onclick="printBenhAn()" class="btn btn-primary save-update">In</button>
+                <button onclick="hideCtBenhAn()" type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
             </div>
         </div>
     </div>

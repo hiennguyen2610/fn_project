@@ -1,5 +1,6 @@
 package com.example.hospital_management.statics;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -14,5 +15,10 @@ public enum DoctorLevel {
     BSCK_I("BS Chuyên Khoa I");
 
     String name;
+
+    @JsonValue
+    public String toName() {
+        return name;
+    }
 
 }

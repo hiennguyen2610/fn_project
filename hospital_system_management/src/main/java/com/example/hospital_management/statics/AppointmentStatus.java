@@ -11,10 +11,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public enum AppointmentStatus {
 
-    APPOINTMENT_CREATED("Đã khởi tạo"),
-    ADMIN_APPROVED("Admin đã phê duyệt"),
-    DOCTOR_REJECTED("Bác sĩ từ chối"),
-    CANCELLED("Đã hủy");
+    APPOINTMENT_CREATED("Khởi tạo"),
+    ADMIN_APPROVED("Phê duyệt"),
+    DOCTOR_REJECTED("Từ chối"),
+    CANCELLED("Hủy");
 
 
     public String name;

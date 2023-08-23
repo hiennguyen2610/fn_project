@@ -76,16 +76,15 @@
 
     <!-- Header Area -->
     <header class="header">
-        <!-- Topbar -->
         <div class="topbar">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-5 col-12">
                         <!-- Contact -->
                         <ul class="top-link">
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Doctors</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Về chúng tôi</a></li>
+                            <li><a href="#">Bác sĩ</a></li>
+                            <li><a href="#">Liên hệ</a></li>
                             <li><a href="#">FAQ</a></li>
                         </ul>
                         <!-- End Contact -->
@@ -93,8 +92,9 @@
                     <div class="col-lg-6 col-md-7 col-12">
                         <!-- Top Contact -->
                         <ul class="top-contact">
-                            <li><i class="fa fa-phone"></i>+880 1234 56789</li>
-                            <li><i class="fa fa-envelope"></i><a href="mailto:support@yourmail.com">support@yourmail.com</a></li>
+                            <li><i class="fa fa-phone"></i>+84 346 156 726</li>
+                            <li><i class="fa fa-envelope"></i><a href="mailto:support@yourmail.com">support@quanghien.com</a>
+                            </li>
                         </ul>
                         <!-- End Top Contact -->
                     </div>
@@ -122,14 +122,14 @@
                             <div class="main-menu">
                                 <nav class="navigation">
                                     <ul class="nav menu">
-                                        <li><a href="/">Home</a></li>
-                                        <li><a href="appointment">Appointment</a></li>
-                                        <li><a href="myappointment">Search Appointment</a></li>
+                                        <li><a href="/">Trang chủ</a></li>
+                                        <li><a href="appointment">Đặt lịch khám</a></li>
+                                        <li><a href="myappointment">Tìm kiếm</a></li>
                                         <div sec:authorize="isAuthenticated()">
-                                            <li onclick="logoutW()"><a href="#">Logout</a></li>
+                                            <li onclick="logoutW()"><a href="#">Đăng nhập</a></li>
                                         </div>
                                         <div sec:authorize="isAnonymous()">
-                                            <li><a href="login">Login</a></li>
+                                            <li><a href="login">Đăng nhập</a></li>
                                         </div>
 
                                     </ul>
@@ -139,7 +139,7 @@
                         </div>
                         <div class="col-lg-2 col-12">
                             <div class="get-quote">
-                                <a href="appointment" class="btn">Book Appointment</a>
+                                <a href="appointment" class="btn">Tạo cuộc hẹn</a>
                             </div>
                         </div>
                     </div>

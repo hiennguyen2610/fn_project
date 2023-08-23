@@ -29,9 +29,11 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     @Query("select d from Doctor d")
     public Page<Doctor> findAllPage(Pageable pageable);
 
+    // Tìm kiếm bác sĩ với tên, địa chỉ hoặc số điện thoại by Admin
     @Query("select d from Doctor d where d.user.name like ?1 or d.address like ?1 or d.phone like ?1")
     public Page<Doctor> searchDoctorByParam(String param, Pageable pageable);
 
+    // Tìm kiếm bác sĩ + chuyên khoa by Admin
     @Query("select d from Doctor d inner join d.specialities sp where" +
             " (d.user.name like ?1 or d.address like ?1 or d.phone like ?1) and sp.id = ?2")
     public Page<Doctor> searchDoctorBySpecialy(String param,Long specialy, Pageable pageable);

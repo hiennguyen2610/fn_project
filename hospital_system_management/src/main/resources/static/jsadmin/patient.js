@@ -82,6 +82,10 @@ function printBenhAn(){
 
     var newWin=window.open('patients','Print-Window');
 
+    var currentTime = new Date();
+
+    var formattedTime = currentTime.toLocaleString(); // Định dạng thời gian theo cài đặt địa phương
+
     newWin.document.open();
 
     newWin.document.write(`<html>
@@ -90,7 +94,9 @@ function printBenhAn(){
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body onload="window.print()">
-    <h3 style="text-align: center; margin-bottom: 50px">HỒ SƠ BỆNH ÁN</h3>
+    <h2 style="text-align: center; margin-top: 40px; margin-bottom: 80px">BỆNH VIỆN ĐA KHOA QUỐC TẾ MEDIPLUS</h2>
+    <h3 style="text-align: center; margin-bottom: 15px">HỒ SƠ BỆNH ÁN</h3>
+    <p style="text-align: center; margin-bottom: 50px">Thời gian: ${formattedTime}</p>
     ${divToPrint.innerHTML}
     </body></html>`);
     newWin.document.close();

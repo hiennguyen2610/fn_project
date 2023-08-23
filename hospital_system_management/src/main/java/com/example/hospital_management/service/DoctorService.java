@@ -1,5 +1,6 @@
 package com.example.hospital_management.service;
 
+import com.example.hospital_management.entity.Appointment;
 import com.example.hospital_management.entity.Doctor;
 import com.example.hospital_management.entity.Speciality;
 import com.example.hospital_management.entity.User;
@@ -9,19 +10,18 @@ import com.example.hospital_management.model.request.UpdateDoctorRequest;
 import com.example.hospital_management.model.response.CommonResponse;
 import com.example.hospital_management.model.response.Doctor2Response;
 import com.example.hospital_management.model.response.DoctorResponse;
+import com.example.hospital_management.repository.AppointmentRepository;
 import com.example.hospital_management.repository.DoctorRepository;
 import com.example.hospital_management.repository.SpecialityRepository;
 import com.example.hospital_management.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.sonatype.sisu.siesta.common.error.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -30,6 +30,7 @@ public class DoctorService {
     DoctorRepository doctorRepository;
     final SpecialityRepository specialityRepository;
     UserRepository userRepository;
+    AppointmentRepository appointmentRepository;
 
     public List<Doctor> getAllDoctor() {
         return doctorRepository.findAll();
@@ -101,6 +102,31 @@ public class DoctorService {
                 .orElseThrow(() -> new NotFoundException("Not found doctor"));
         doctorRepository.delete(doctor);
     }
+
+//    public void deleteDoctor1(Long id) throws BadRequestException {
+//        Optional<Doctor> doctorOptional = doctorRepository.findById(id);
+//        if (doctorOptional.isEmpty()) {
+//            throw new NotFoundException("Không tìm thấy bác sĩ");
+//        }
+//        List<Appointment> appointmentList = appointmentRepository.findAllBySpecialities(doctorOptional.get());
+//        if (appointmentList.size() > 0) {
+//            throw new BadRequestException("Không thể xóa vì bác sĩ đã có cuộc hẹn");
+//        }
+//        doctorRepository.delete(longValue(id));
+//    }
+//
+//    public void deleteSpeciality(Long id) throws BadRequestException {
+//        Optional<Speciality> specialityOptional = specialityRepository.findById(id);
+//        if (specialityOptional.isEmpty()) {
+//            throw new NotFoundException("Không tìm thấy chuyên khoa");
+//        }
+//        List<Doctor> doctorList = doctorRepository.findAllBySpecialities(specialityOptional.get());
+//        if (doctorList.size() > 0) {
+//            throw new BadRequestException("Không thể xóa vì đang có bác sĩ trong chuyên khoa này");
+//        }
+//        specialityRepository.deleteById(id);
+//    }
+
 
     public Doctor findById(Long id) {
         return doctorRepository.findById(id).orElse(null);

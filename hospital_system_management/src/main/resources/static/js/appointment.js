@@ -25,7 +25,7 @@ async function loadAllSpeciality(){
     time = null;
     document.getElementById("datecs").innerHTML = ""
     document.getElementById("chooseDate").value = ""
-    document.getElementById("listTime").innerHTML = "please choose a doctor and date"
+    document.getElementById("listTime").innerHTML = "Vui lòng chọn bác sĩ và giờ khám"
 }
 
 
@@ -51,7 +51,7 @@ function clearI(){
     time = null;
     document.getElementById("chooseDate").value = ""
     document.getElementById("datecs").innerHTML = ""
-    document.getElementById("listTime").innerHTML = "please choose a doctor and date"
+    document.getElementById("listTime").innerHTML = "Vui lòng chọn bác sĩ và giờ khám"
 }
 
 
@@ -59,7 +59,7 @@ async function loadTime(){
     var doctorId = document.getElementById("listDoctor").value;
     var dates = document.getElementById("chooseDate").value;
     if(doctorId == null || doctorId == ""){
-        document.getElementById("listTime").innerHTML = "please choose a doctor and date"
+        document.getElementById("listTime").innerHTML = "Vui lòng chọn bác sĩ và giờ khám"
         return;
     }
     else{

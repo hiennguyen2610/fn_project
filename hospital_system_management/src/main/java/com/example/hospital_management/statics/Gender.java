@@ -1,5 +1,6 @@
 package com.example.hospital_management.statics;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,4 +15,9 @@ public enum Gender {
     FEMALE("Nữ");
 
     String name;
+
+    @JsonValue
+    public String toName() {
+        return name;
+    }
 }
