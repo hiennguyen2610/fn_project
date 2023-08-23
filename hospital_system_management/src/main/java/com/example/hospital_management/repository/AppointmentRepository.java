@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
+    // Tìm kiếm doctor còn trống lịch trong ngày nào
     @Query("select a from Appointment a where a.doctor.id = ?1 and a.appointmentDate = ?2")
     public List<Appointment> findByDoctor(Long doctorId, Date date);
 
@@ -26,7 +27,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     @Query("select a from Appointment a where a.appointmentStatus <> ?4 and a.appointmentDate >= ?1 and a.appointmentDate <= ?2 and (a.patient.name like ?3 or a.patient.email like ?3 or a.patient.phone like ?3)")
     public Page<Appointment> findByEmp(Date start, Date end, String param, AppointmentStatus appointmentStatus, Pageable pageable);
-
 
     @Query("select a from Appointment a where a.appointmentDate >= ?1 and a.appointmentDate <= ?2 and" +
             " (a.patient.name like ?3 or a.patient.email like ?3 or a.patient.phone like ?3)" +

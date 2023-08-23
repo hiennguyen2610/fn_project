@@ -32,14 +32,14 @@ async function searchAppointment(page) {
         var paystatus = ''
         var checs = '';
         var num = 0;
-        if(list[i].paymentStatus == PAID){
+        if(list[i].paymentStatus === PAID){
             paystatus = `<p style="color: green;font-weight: bold">${list[i].paymentStatus}</p>`
             checs = 'checked'
             num = 1;
-        }if(list[i].paymentStatus == UNPAID){
-            paystatus = `<p style="color: red">${list[i].paymentStatus}</p>`
+        }if(list[i].paymentStatus === UNPAID){
+            paystatus = `<p style="color: red;font-weight: bold">${list[i].paymentStatus}</p>`
         }
-        var checkbox = `<label class="checkbox-custom">Confirm
+        var checkbox = `<label class="checkbox-custom">Xác nhận
                             <input onchange="confirmPay(${list[i].id}, ${num}, this)" ${checs} type="checkbox">
                             <span class="checkmark-checkbox"></span>
                         </label>`
@@ -57,7 +57,7 @@ async function searchAppointment(page) {
                     <td>${list[i].appointmentStatus}</td>
                     <td>${paystatus}</td>
                     <td>${formatmoney(list[i].amount)}</td>
-                    <td>${formatmoney(list[i].paidAmount)}</td>
+<!--                    <td>${formatmoney(list[i].paidAmount)}</td>-->
                     <td class="text-right">
                         ${checkbox}
                         <i onclick="loadDsDv(${list[i].id})" class="fa fa-eye pointer"></i>

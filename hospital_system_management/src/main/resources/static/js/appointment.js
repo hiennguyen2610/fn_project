@@ -7,7 +7,7 @@ var CANCELLED = "Đã hủy";
 
 var UNPAID = 'UNPAID'
 var PAID = 'PAID'
-
+// Hiển thị speciality
 async function loadAllSpeciality(){
     var url = 'http://localhost:8080/api/v1/speciality/public/all';
     const response = await fetch(url, {
@@ -28,7 +28,7 @@ async function loadAllSpeciality(){
     document.getElementById("listTime").innerHTML = "Vui lòng chọn bác sĩ và giờ khám"
 }
 
-
+// Hiển thị bác sĩ trong speciality đã chọn
 async function loadDoctorBySpecialy(e){
     var url = 'http://localhost:8080/api/v1/doctor/public/all?idSpecialy='+e.value;
     const response = await fetch(url, {
@@ -58,7 +58,7 @@ function clearI(){
 async function loadTime(){
     var doctorId = document.getElementById("listDoctor").value;
     var dates = document.getElementById("chooseDate").value;
-    if(doctorId == null || doctorId == ""){
+    if(doctorId == null || doctorId === ""){
         document.getElementById("listTime").innerHTML = "Vui lòng chọn bác sĩ và giờ khám"
         return;
     }
@@ -100,7 +100,7 @@ function chooseTime(e, chooseTime){
     }
     e.classList.add("active");
     time = chooseTime;
-    document.getElementById("datecs").innerHTML = "date: "+ document.getElementById("chooseDate").value +", time: "+time
+    document.getElementById("datecs").innerHTML = "Ngày: "+ document.getElementById("chooseDate").value +", giờ: "+time
 }
 
 
@@ -141,6 +141,7 @@ async function createAppointment(){
     });
     if(response.status < 300){
         var result = await response.json();
+        alert("Tạo cuộc hẹn thành công!")
         window.location.reload()
     }
 }
@@ -279,3 +280,34 @@ async function loadCTBenhAn(patientId){
 function hideCtBenhAn(){
     $("#chitietbenhan").modal('hide')
 }
+
+
+function printBenhAn() {
+    var divToPrint = document.getElementById('ctbenhan');
+
+    var newWin = window.open('patients', 'Print-Window');
+
+    var currentTime = new Date();
+
+    var formattedTime = currentTime.toLocaleString(); // Định dạng thời gian theo cài đặt địa phương
+
+    newWin.document.open();
+
+    newWin.document.write(`<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body onload="window.print()">
+    <h2 style="text-align: center; margin-top: 40px; margin-bottom: 80px">BỆNH VIỆN ĐA KHOA QUỐC TẾ MEDIPLUS</h2>
+    <h3 style="text-align: center; margin-bottom: 15px">HỒ SƠ BỆNH ÁN</h3>
+    <p style="text-align: center; margin-bottom: 50px">Thời gian: ${formattedTime}</p>
+    ${divToPrint.innerHTML}
+    </body></html>`);
+    newWin.document.close();
+
+    setTimeout(function () {
+        newWin.close();
+    }, 10);
+}
+

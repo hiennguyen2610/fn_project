@@ -1,14 +1,14 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
-	<div th:insert="anonymous/template/menu :: libs"></div>
-	<script src="js/appointment.js"></script>
-	<script>
-		window.onload = function(){
-			loadAllSpeciality();
-			loadTime(null);
-		}
-	</script>
+    <div th:insert="anonymous/template/menu :: libs"></div>
+    <script src="js/appointment.js"></script>
+    <script>
+        window.onload = function () {
+            loadAllSpeciality();
+            loadTime(null);
+        }
+    </script>
 </head>
 <body>
 <div th:insert="anonymous/template/menu :: menu"></div>
@@ -16,247 +16,257 @@
 
 <!-- Breadcrumbs -->
 <div class="breadcrumbs overlay">
-	<div class="container">
-		<div class="bread-inner">
-			<div class="row">
-				<div class="col-12">
-					<h2>Tạo Cuộc Hẹn Của Bạn</h2>
-					<ul class="bread-list">
-						<li><a href="index.html">Trang chủ</a></li>
-						<li><i class="icofont-simple-right"></i></li>
-						<li class="active">Đặt lịch khám</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="bread-inner">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Tạo Cuộc Hẹn Của Bạn</h2>
+                    <ul class="bread-list">
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><i class="icofont-simple-right"></i></li>
+                        <li class="active">Đặt lịch khám</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- End Breadcrumbs -->
 
 <!-- Start Appointment -->
 <section class="appointment single-page">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-7 col-md-12 col-12">
-				<div class="appointment-inner">
-					<div class="title">
-						<h3>Đặt cuộc hẹn của bạn</h3>
-						<p>Chúng tôi sẽ xác nhận cuộc hẹn của bạn trong vòng 2 giờ</p>
-					</div>
-					<div class="form">
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-12">
-								<label style="color: #666666; font-weight: bold;">Nhập tên của bạn</label>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-12 col-12">
+                <div class="appointment-inner">
+                    <div class="title">
+                        <h3>Tạo cuộc hẹn của bạn</h3>
+                        <p>Chúng tôi sẽ xác nhận cuộc hẹn của bạn trong vòng 2 giờ</p>
+                    </div>
+                    <div class="form">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <label style="color: #666666; font-weight: bold;">Nhập tên của bạn</label>
 
-								<div class="form-group">
-									<input id="name" type="text" placeholder="Tên">
-									<span class="errors" id="nameerror">Name not blank(*)</span>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12">
-								<label style="color: #666666; font-weight: bold;">Địa chỉ Email</label>
+                                <div class="form-group">
+                                    <input id="name" type="text" placeholder="Tên">
+                                    <span class="errors" id="nameerror">Name not blank(*)</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <label style="color: #666666; font-weight: bold;">Địa chỉ Email</label>
 
-								<div class="form-group">
-									<input id="email" type="email" placeholder="Email">
-									<span class="errors" id="emailerror">Email not blank(*)</span>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12">
-								<label style="color: #666666; font-weight: bold;">Nhập số điện thoại</label>
+                                <div class="form-group">
+                                    <input id="email" type="email" placeholder="Email">
+                                    <span class="errors" id="emailerror">Email not blank(*)</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <label style="color: #666666; font-weight: bold;">Nhập số điện thoại</label>
 
-								<div class="form-group">
-									<input id="phone" type="text" placeholder="Số điện thoại">
-									<span class="errors" id="phoneerror">Phone not blank(*)</span>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12">
-								<label style="color: #666666; font-weight: bold;">Giới tính</label>
+                                <div class="form-group">
+                                    <input id="phone" type="text" placeholder="Số điện thoại">
+                                    <span class="errors" id="phoneerror">Phone not blank(*)</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <label style="color: #666666; font-weight: bold;">Giới tính</label>
 
-								<div class="form-group">
-									<select id="gender" class="form-control" style="font-size: 14px">
-										<option value="male">Nam</option>
-										<option value="famale">Nữ</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-lg-12 col-md-12 col-12">
-								<label style="color: #666666; font-weight: bold;">Nhập địa chỉ</label>
+                                <div class="form-group">
+                                    <select id="gender" class="form-control" style="font-size: 14px">
+                                        <option value="male">Nam</option>
+                                        <option value="famale">Nữ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <label style="color: #666666; font-weight: bold;">Nhập địa chỉ</label>
 
-								<div class="form-group">
-									<input id="address" type="text" placeholder="Địa chỉ">
-									<span class="errors" id="addresserror">Address not blank(*)</span>
-								</div>
-							</div>
+                                <div class="form-group">
+                                    <input id="address" type="text" placeholder="Địa chỉ">
+                                    <span class="errors" id="addresserror">Address not blank(*)</span>
+                                </div>
+                            </div>
 
-							<div class="col-lg-6 col-md-6 col-12">
-								<label style="color: #666666; font-weight: bold;">Chọn chuyên khoa</label>
-								<div class="form-group">
-									<select class="form-control wide" id="listSpeciality" onchange="loadDoctorBySpecialy(this)"  style="font-size: 14px">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <label style="color: #666666; font-weight: bold;">Chọn chuyên khoa</label>
+                                <div class="form-group">
+                                    <select class="form-control wide" id="listSpeciality"
+                                            onchange="loadDoctorBySpecialy(this)" style="font-size: 14px">
 
-									</select>
-									<span class="errors" id="specialityerror">Speciality not blank(*)</span>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12">
-								<label style="color: #666666; font-weight: bold;">Ngày sinh</label>
-								<div class="form-group">
-									<input id="dob" class="form-control" type="date" placeholder="date of birth"  style="font-size: 14px">
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12">
-								<label style="color: #666666; font-weight: bold;">Chọn bác sĩ</label>
-								<div class="form-group">
-									<select onchange="clearI()" class="form-control wide" id="listDoctor"  style="font-size: 14px">
+                                    </select>
+                                    <span class="errors" id="specialityerror">Speciality not blank(*)</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <label style="color: #666666; font-weight: bold;">Ngày sinh</label>
+                                <div class="form-group">
+                                    <input id="dob" class="form-control" type="date" placeholder="date of birth"
+                                           style="font-size: 14px">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <label style="color: #666666; font-weight: bold;">Chọn bác sĩ</label>
+                                <div class="form-group">
+                                    <select onchange="clearI()" class="form-control wide" id="listDoctor"
+                                            style="font-size: 14px">
 
-									</select>
-									<span class="errors" id="doctorerror">Doctor not blank(*)</span>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12">
-								<label style="color: #666666; font-weight: bold;">Chọn ngày khám</label>
-								<div class="form-group">
-									<input onchange="loadTime()" type="date" disabled class="form-control" id="chooseDate"  style="font-size: 14px">
-								</div>
-								<span class="errors" id="dateerror">Appointment Date not blank(*)</span>
-							</div>
-							<div class="col-lg-12 col-md-12 col-12">
-								<div class="form-group">
-									<textarea id="message" placeholder="Vui lòng điền triệu chứng hoặc yêu cầu....."></textarea>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12">
-								<div class="form-group">
-									<div class="button">
-										<button onclick="createAppointment()" class="btn">Đặt Lịch Hẹn</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-5 col-md-12 ">
-				<div class="appointment-inner">
-					<h3 class="choosetime" style="font-size: 25px">Chọn giờ khám</h3>
-					<div class="group-time-items" id="listTime">
-								<span class="time-item active">
-									08:00
-								</span><span class="time-item">
-									08:30
-								</span><span class="time-item">
-									09:00
-								</span>
-					</div>
-					<p id="datecs"></p>
-					<span class="errors" id="timeerror">Appointment Time not blank(*)</span>
-				</div>
-			</div>
+                                    </select>
+                                    <span class="errors" id="doctorerror">Doctor not blank(*)</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <label style="color: #666666; font-weight: bold;">Chọn ngày khám</label>
+                                <div class="form-group">
+                                    <input onchange="loadTime()" type="date" disabled class="form-control"
+                                           id="chooseDate" style="font-size: 14px">
+                                </div>
+                                <span class="errors" id="dateerror">Appointment Date not blank(*)</span>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <div class="form-group">
+                                    <textarea id="message"
+                                              placeholder="Vui lòng điền triệu chứng hoặc yêu cầu....."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="button">
+                                        <button onclick="createAppointment()" class="btn">Đặt Lịch Hẹn</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 ">
+                <div class="appointment-inner">
+                    <h3 class="choosetime" style="font-size: 25px">Chọn giờ khám</h3>
+                    <div class="group-time-items" id="listTime">
+<!--                        <span class="time-item active">-->
+<!--                            08:00-->
+<!--                        </span>-->
+<!--                        <span class="time-item">-->
+<!--                            08:30-->
+<!--                        </span>-->
+<!--                        <span class="time-item">-->
+<!--                            09:00-->
+<!--                        </span>-->
+                    </div>
+                    <p id="datecs"></p>
+                    <span class="errors" id="timeerror">Appointment Time not blank(*)</span>
+                </div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </section>
 <!--/End Appointment -->
 
 <!-- Footer Area -->
 <footer id="footer" class="footer ">
-	<!-- Footer Top -->
-	<div class="footer-top">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6 col-12">
-					<div class="single-footer">
-						<h2>Về chúng tôi</h2>
-						<p>Mediplus là Hệ thống Y tế hàn lâm do Vingroup - Tập đoàn kinh tế tư nhân đa ngành tại Việt Nam đầu tư phát triển với sứ mệnh “Mang lại sự lựa chọn hoàn hảo về chăm sóc sức khỏe". </p>
-						<!-- Social -->
-						<ul class="social">
-							<li><a href="#"><i class="icofont-facebook"></i></a></li>
-							<li><a href="#"><i class="icofont-google-plus"></i></a></li>
-							<li><a href="#"><i class="icofont-twitter"></i></a></li>
-							<li><a href="#"><i class="icofont-vimeo"></i></a></li>
-							<li><a href="#"><i class="icofont-pinterest"></i></a></li>
-						</ul>
-						<!-- End Social -->
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-12">
-					<div class="single-footer f-link">
-						<h2>Dịch vụ</h2>
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-12">
-								<ul>
-									<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Trang chủ</a></li>
-									<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Về chúng tôi</a>
-									</li>
-									<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Các dịch vụ</a>
-									</li>
-									<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Bác sĩ</a>
-									</li>
-									<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Khác</a>
-									</li>
-								</ul>
-							</div>
-							<div class="col-lg-6 col-md-6 col-12">
-								<ul>
-									<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Tư vấn</a>
-									</li>
-									<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Tin tức</a></li>
-									<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Tuyển dụng</a>
-									</li>
-									<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
-									<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Liên hệ</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-12">
-					<div class="single-footer">
-						<h2>Giờ làm việc</h2>
-						<ul class="time-sidual">
-							<li class="day">Thứ hai - Thứ sáu <span>8.00-20.00</span></li>
-							<li class="day">Chủ nhật <span>9.00-18.30</span></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 col-12">
-					<div class="single-footer">
-						<h2>Bản tin</h2>
-						<p>Bằng cách nhấn nút Đăng ký hoặc nút gửi thông tin đi, tôi xác nhận đã đọc và đồng ý với các Quy định Chính sách quyền riêng tư</p>
-						<form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-							<input name="email" placeholder="Nhập Email" class="common-input"
-								   onfocus="this.placeholder = ''"
-								   onblur="this.placeholder = 'Your email address'" required="" type="email">
-							<button class="button"><i class="icofont icofont-paper-plane"></i></button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--/ End Footer Top -->
-	<!-- Copyright -->
-	<div class="copyright">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-12">
-					<div class="copyright-content">
-						<p>© Copyright 2023 | All Rights Reserved by <a href="https://github.com/hiennguyen2610"
-																		target="_blank">hiennguyen2610</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--/ End Copyright -->
+    <!-- Footer Top -->
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-footer">
+                        <h2>Về chúng tôi</h2>
+                        <p>Mediplus là Hệ thống Y tế hàn lâm do Vingroup - Tập đoàn kinh tế tư nhân đa ngành tại Việt
+                            Nam đầu tư phát triển với sứ mệnh “Mang lại sự lựa chọn hoàn hảo về chăm sóc sức khỏe". </p>
+                        <!-- Social -->
+                        <ul class="social">
+                            <li><a href="#"><i class="icofont-facebook"></i></a></li>
+                            <li><a href="#"><i class="icofont-google-plus"></i></a></li>
+                            <li><a href="#"><i class="icofont-twitter"></i></a></li>
+                            <li><a href="#"><i class="icofont-vimeo"></i></a></li>
+                            <li><a href="#"><i class="icofont-pinterest"></i></a></li>
+                        </ul>
+                        <!-- End Social -->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-footer f-link">
+                        <h2>Dịch vụ</h2>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Trang chủ</a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Về chúng tôi</a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Các dịch vụ</a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Bác sĩ</a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Khác</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Tư vấn</a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Tin tức</a></li>
+                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Tuyển dụng</a>
+                                    </li>
+                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
+                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Liên hệ</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-footer">
+                        <h2>Giờ làm việc</h2>
+                        <ul class="time-sidual">
+                            <li class="day">Thứ hai - Thứ sáu <span>8.00-20.00</span></li>
+                            <li class="day">Chủ nhật <span>9.00-18.30</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="single-footer">
+                        <h2>Bản tin</h2>
+                        <p>Bằng cách nhấn nút Đăng ký hoặc nút gửi thông tin đi, tôi xác nhận đã đọc và đồng ý với các
+                            Quy định Chính sách quyền riêng tư</p>
+                        <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+                            <input name="email" placeholder="Nhập Email" class="common-input"
+                                   onfocus="this.placeholder = ''"
+                                   onblur="this.placeholder = 'Your email address'" required="" type="email">
+                            <button class="button"><i class="icofont icofont-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Footer Top -->
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-12">
+                    <div class="copyright-content">
+                        <p>© Copyright 2023 | All Rights Reserved by <a href="https://github.com/hiennguyen2610"
+                                                                        target="_blank">hiennguyen2610</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Copyright -->
 </footer>
 <!--/ End Footer Area -->
 
 <script>
-	var today = new Date().toISOString().split('T')[0];
-	document.getElementById("chooseDate").setAttribute('min', today);
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementById("chooseDate").setAttribute('min', today);
 </script>
 
 <!-- jquery Min JS -->
