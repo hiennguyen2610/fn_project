@@ -30,16 +30,16 @@
         <div class="content">
             <div class="row">
                 <div class="col-sm-4 col-3">
-                    <h4 class="page-title">Appointments</h4>
+                    <h4 class="page-title">Danh sách cuộc hẹn</h4>
                 </div>
                 <div class="col-sm-8 col-9 text-right m-b-20">
-                    <a href="add-appointment.html" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Add Appointment</a>
+                    <button onclick="showAdd()" class="btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Tạo cuộc hẹn</button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-4">
                     <label>&ThinSpace;</label>
-                    <input id="param" placeholder="tìm kiếm" class="form-control">
+                    <input id="param" placeholder="Nhập tên bệnh nhân" class="form-control">
                 </div>
                 <div class="col-sm-3">
                     <label>Từ ngày</label>
@@ -53,10 +53,6 @@
                     <label>&ThinSpace;</label><br>
                     <button onclick="searchAppointment(0)" class="btn btn-primary">Tìm kiếm</button>
                 </div>
-                <div class="col-sm-2">
-                    <label>&ThinSpace;</label><br>
-                    <button onclick="showAdd()" class="btn btn-primary">Tạo cuộc hẹn</button>
-                </div>
             </div><br><br>
             <div class="row">
                 <div class="col-md-12">
@@ -64,39 +60,19 @@
                         <table class="table table-striped custom-table">
                             <thead>
                             <tr>
-                                <th>Appointment ID</th>
-                                <th>Patient Name</th>
-                                <th>Age</th>
-                                <th>Doctor Name</th>
-                                <th>Department</th>
-                                <th>Appointment Date</th>
-                                <th>Appointment Time</th>
-                                <th>Status</th>
-                                <th>Pay Status</th>
-                                <th class="text-right">Action</th>
+                                <th>ID</th>
+                                <th>Tên bệnh nhân</th>
+                                <th>Ngày sinh</th>
+                                <th>Bác sĩ</th>
+                                <th>Chuyên khoa</th>
+                                <th>Ngày</th>
+                                <th>Giờ</th>
+                                <th>Trạng thái</th>
+                                <th>Thanh toán</th>
+                                <th class="text-right">...</th>
                             </tr>
                             </thead>
                             <tbody id="listApp">
-<!--                            <tr>-->
-<!--                                <td>APT0001</td>-->
-<!--                                <td><img width="28" height="28" src="assets/img/user.jpg" class="rounded-circle m-r-5" alt=""> Denise Stevens</td>-->
-<!--                                <td>35</td>-->
-<!--                                <td>Henry Daniels</td>-->
-<!--                                <td>Cardiology</td>-->
-<!--                                <td>30 Dec 2018</td>-->
-<!--                                <td>10:00am - 11:00am</td>-->
-<!--                                <td><span class="custom-badge status-red">Inactive</span></td>-->
-<!--                                <td class="text-right">-->
-<!--                                    <div class="dropdown dropdown-action">-->
-<!--                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>-->
-<!--                                        <div class="dropdown-menu dropdown-menu-right">-->
-<!--                                            <a class="dropdown-item" href="/admin/edit-appointment"><i class="fa fa-pencil m-r-5"></i> Edit</a>-->
-<!--                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_appointment"><i class="fa fa-trash-o m-r-5"></i> Delete</a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </td>-->
-<!--                            </tr>-->
-
                             </tbody>
                         </table>
 
@@ -133,7 +109,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
-                                    <input id="name" class="form-control" type="text" placeholder="Name">
+                                    <input id="name" class="form-control" type="text" placeholder="Nhập tên">
                                     <span class="errors" id="nameerror">Name not blank(*)</span>
                                 </div>
                             </div>
@@ -144,45 +120,42 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
-                                    <input id="phone" class="form-control" type="text" placeholder="Phone">
+                                    <input id="phone" class="form-control" type="text" placeholder="Số điện thoại">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <select id="gender" class="form-control">
-                                        <option value="male">male</option>
-                                        <option value="famale">famale</option>
-                                        <option value="unknow">unknow</option>
+                                        <option value="male">Nam</option>
+                                        <option value="famale">Nữ</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-6">
                                 <div class="form-group">
-                                    <input id="address" class="form-control" type="text" placeholder="address">
+                                    <input id="address" class="form-control" type="text" placeholder="Địa chỉ">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
-                                <label style="color: #000; font-weight: bold;">Choose Speciality</label>
+                                <label style="color: #666666; font-weight: bold;">Chọn chuyên khoa</label>
                                 <div class="form-group">
                                     <select class="form-control wide" id="listSpeciality" onchange="loadDoctorBySpecialy(this)">
-                                        <!-- <option data-value="1" class="option selected ">Department</option>
-                                        <option data-value="2" class="option">Cardiac Clinic</option> -->
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
-                                <label style="color: #000; font-weight: bold;">Date of birth</label>
+                                <label style="color: #666666; font-weight: bold;">Ngày sinh</label>
                                 <div class="form-group">
-                                    <input id="dob" class="form-control" type="date" placeholder="date of birth">
+                                    <input id="dob" class="form-control" type="date" placeholder="Ngày sinh">
                                 </div>
-                                <label style="color: #000; font-weight: bold;">Choose Date</label>
+                                <label style="color: #666666; font-weight: bold;">Ngày khám</label>
                                 <div class="form-group">
                                     <input onchange="loadTime()" type="date" class="form-control" id="chooseDate">
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-12 ">
                                 <div class="appointment-inner">
-                                    <label style="color: #000; font-weight: bold;">Choose time</label>
+                                    <label style="color: #666666; font-weight: bold;">Giờ khám</label>
                                     <div class="group-time-items" id="listTime">
 <!--								<span class="time-item active">-->
 <!--									08:00-->
@@ -197,14 +170,14 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-6">
                                 <div class="form-group">
-                                    <textarea class="form-control" id="message" placeholder="Write Your Message Here....."></textarea>
+                                    <textarea class="form-control" id="message" placeholder="Triệu chứng....."></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button onclick="createAppointment()" class="btn btn-primary save-update">Save</button>
-                        <button onclick="hideAdd()" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button onclick="createAppointment()" class="btn btn-primary save-update">Lưu</button>
+                        <button onclick="hideAdd()" type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
                     </div>
                 </div>
             </div>
@@ -293,13 +266,12 @@
         </div>
     </div>
 </div>
-
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/admin-bootstrap.min.js"></script>
-<script src="../js/admin-popper.min.js"></script>
-<script src="../js/jquery.magnific-popup.min.js"></script>
-<script src="../js/jquery.min.js"></script>
-<script src="../boostrap/js/bootstrap.bundle.min.js"></script>
+<!--<script src="../js/bootstrap.min.js"></script>-->
+<!--<script src="../js/admin-bootstrap.min.js"></script>-->
+<!--<script src="../js/admin-popper.min.js"></script>-->
+<!--<script src="../js/jquery.magnific-popup.min.js"></script>-->
+<!--<script src="../js/jquery.min.js"></script>-->
+<!--<script src="../boostrap/js/bootstrap.bundle.min.js"></script>-->
 
 <!-- jQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"

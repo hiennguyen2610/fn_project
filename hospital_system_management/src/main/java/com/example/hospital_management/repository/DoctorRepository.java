@@ -26,6 +26,7 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     @Query("select d from Doctor d inner join d.specialities sp where sp.id = ?1 and d.id <> ?2")
     public List<Doctor> findBySpecialityAndDoctor(Long idSpecialy, Long iddoctor);
 
+    // Phân trang
     @Query("select d from Doctor d")
     public Page<Doctor> findAllPage(Pageable pageable);
 
@@ -38,3 +39,6 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
             " (d.user.name like ?1 or d.address like ?1 or d.phone like ?1) and sp.id = ?2")
     public Page<Doctor> searchDoctorBySpecialy(String param,Long specialy, Pageable pageable);
 }
+
+
+

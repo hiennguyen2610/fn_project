@@ -27,7 +27,7 @@ public class SpecialityController {
 
     @GetMapping("/admin/departments")
     public String department(@RequestParam(required = false, defaultValue = "1") Integer page,
-                             @RequestParam(required = false, defaultValue = "6") Integer pageSize, Model model) {
+                             @RequestParam(required = false, defaultValue = "3") Integer pageSize, Model model) {
         Page<Speciality> pageInfo = specialityService.getAllSpecialityPage(page, pageSize);
         List<Speciality> specialityList = specialityService.getAllSpecialities();
         model.addAttribute("listAllSpecialities", specialityList);

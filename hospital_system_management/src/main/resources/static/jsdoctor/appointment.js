@@ -60,10 +60,16 @@ async function searchAppointment(page) {
         }if(list[i].paymentStatus == UNPAID){
             paystatus = `<p style="color: red">${list[i].paymentStatus}</p>`
         }
+
+        var ngs = list[i].patient.dob;
+        if(list[i].patient.dob == null){
+            ngs = ''
+        }
+
         main += `<tr>
                     <td>${list[i].id}</td>
                     <td>${list[i].patient.name}</td>
-                    <td></td>
+                    <td>${ngs}</td>
                     <td>${list[i].doctor.user.name}</td>
                     <td>${list[i].speciality.name}</td>
                     <td>${list[i].appointmentDate}</td>
@@ -343,8 +349,6 @@ function checkInput(name,email,phone,gender,address,speciality,doctor,chooseDate
     if(chooseDate == "" || chooseDate == null){
         alert("chooseDate not blank"); return;
     }
-
-
 }
 
 
