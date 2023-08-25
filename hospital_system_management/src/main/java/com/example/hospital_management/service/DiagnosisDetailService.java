@@ -26,6 +26,7 @@ public class DiagnosisDetailService {
     @Autowired
     private ServiceRepository serviceRepository;
 
+    // Create service to Appointment
     public void addServiceToAppointment(Long idAppointment, List<String> listIdService){
         Optional<Appointment> appointment = appointmentRepository.findById(idAppointment);
         if(appointment.isEmpty()){

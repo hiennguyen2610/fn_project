@@ -18,12 +18,14 @@ public class DiagnosisDetailResource {
     @Autowired
     private DiagnosisDetailService diagnosisDetailService;
 
+    // API tạo DiagnosisDetail
     @PostMapping("/doctor/create")
     public ResponseEntity<?> save(@RequestParam Long idAppointment, @RequestBody List<String> listIdService){
         diagnosisDetailService.addServiceToAppointment(idAppointment, listIdService);
         return new ResponseEntity<>("success", HttpStatus.CREATED);
     }
 
+    // API tìm dịch vụ bởi cuộc hẹn
     @GetMapping("/public/find-by-appointment")
     public List<DiagnosisDetail> findByApp(@RequestParam("idApp") Long idApp){
         return diagnosisDetailService.findByApp(idApp);
@@ -34,6 +36,7 @@ public class DiagnosisDetailResource {
         return diagnosisDetailService.findByPatient(idPatient);
     }
 
+    // Cập nhật bệnh án chi tiết
     @PostMapping("/doctor/update")
     public void update(@RequestBody List<DiagnosisDetailRequest> list){
         diagnosisDetailService.update(list);

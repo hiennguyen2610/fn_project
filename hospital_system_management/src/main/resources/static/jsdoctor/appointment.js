@@ -6,11 +6,13 @@ var CANCELLED = "Đã hủy";
 var UNPAID = 'UNPAID'
 var PAID = 'PAID'
 
+// Tìm kiếm thông tin cuộc hẹn
 async function searchAppointment(page) {
     var param = document.getElementById("param").value
     var start = document.getElementById("start").value
     var end = document.getElementById("end").value
 
+    // Tìm kiếm
     var url = 'http://localhost:8080/api/v1/appointment/doctor/all-appointment?page='+page+"&size=3&param="+param;
     if(start != "" && start != null && end != null && end != ""){
         url += '&start='+start+'&end='+end;
@@ -26,7 +28,7 @@ async function searchAppointment(page) {
     var totalPage = result.totalPages
     var main = '';
 
-
+    // Chọn appointment status cho bác sĩ
     var urls = 'http://localhost:8080/api/v1/appointment/doctor/all-status';
     const res = await fetch(urls, {
         method: 'GET',
@@ -96,6 +98,7 @@ async function searchAppointment(page) {
     document.getElementById("listpage").innerHTML = mainpage
 }
 
+// Load dịch vụ
 var listService = [];
 async function loadAllDv(){
     var url = 'http://localhost:8080/api/v1/service/public/all-service';
@@ -112,10 +115,12 @@ async function loadAllDv(){
     }
 }
 
-
+// Tạo hồ sơ bệnh án
 async function loadDsDv(idApp){
     $("#chitietdv").modal('show');
     document.getElementById("idapps").innerHTML = idApp
+
+    // Load danh sách dịch vụ đã được yêu cầu theo cuộc hẹn
     var urls = 'http://localhost:8080/api/v1/diagnosisDetail/public/find-by-appointment?idApp='+idApp;
     const res = await fetch(urls, {
         method: 'GET',
@@ -169,7 +174,7 @@ async function loadDsDv(idApp){
     tinyMCE.get('editor').setContent(results)
 }
 
-
+// Chọn dịch vụ để bệnh nhân khám
 async function openChonDichVu(idapp){
     document.getElementById("idapp").value = idapp
     var urls = 'http://localhost:8080/api/v1/diagnosisDetail/public/find-by-appointment?idApp='+idapp;
@@ -207,7 +212,7 @@ function closeChonDv(){
     $("#chondichvu").modal('hide');
 }
 
-
+// Thay đổi trạng thái cuộc hẹn
 async function activeApoi(id, status) {
     var con = confirm("Bạn chắc chắn muốn chuyển trạng thái lịch hẹn?");
     if(con){
@@ -329,7 +334,7 @@ async function createAppointment(){
     }
 }
 
-
+// Validate tạm cho bác sĩ tạo cuộc hẹn
 function checkInput(name,email,phone,gender,address,speciality,doctor,chooseDate,symptom){
     if(name == "" || name == null){
         alert("name not blank"); return;
@@ -364,7 +369,7 @@ async function logout(){
     }
 }
 
-
+// Lưu dịch vụ mà bác sĩ đã yêu cầu bệnh nhân thực hiện
 async function saveServiceToAppointment(){
     var idapp = document.getElementById("idapp").value;
     var listIdSev = $("#services").val();
@@ -385,7 +390,7 @@ async function saveServiceToAppointment(){
     }
 }
 
-
+// Ẩn yêu cầu thăm khám
 function hideDsdv(){
     $("#chitietdv").modal('hide');
 }
@@ -395,6 +400,7 @@ var kqkList = [];
 var idBenhAn = -1;
 var idApps = -1;
 
+// Cập nhật bệnh án
 async function updateApp(){
     if(ctkList < 1){
         alert("Không có dịch vụ nào");
@@ -441,7 +447,7 @@ async function updateApp(){
     }
 }
 
-
+// Quy đổi tiền tệ theo VN
 function formatmoney(money) {
     var VND = new Intl.NumberFormat('vi-VN', {
         style: 'currency',

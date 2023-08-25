@@ -61,6 +61,7 @@ public class AppointmentResource {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    // API tìm kiếm cuộc hẹn ở phía ADMIN, EMPLOYEE
     @GetMapping("/admin/all")
     public ResponseEntity<?> allApointment(@RequestParam(value = "start", required = false) Date start,
                                            @RequestParam(value = "end", required = false) Date end,
@@ -79,6 +80,7 @@ public class AppointmentResource {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    // API tìm cuộc hẹn từ Bác sĩ
     @GetMapping("/doctor/all-appointment")
     public ResponseEntity<?> allApointmentByDoctor(@RequestParam(value = "start", required = false) Date start,
                                                    @RequestParam(value = "end", required = false) Date end,
@@ -94,19 +96,21 @@ public class AppointmentResource {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    // API lấy ra appointment status từ ADMIN
     @GetMapping("/admin/all-status")
     public ResponseEntity<?> getAllApt(){
         List<AppointmentStatus> list = appointmentService.getAllApt();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    // API chọn appointment status từ DOCTOR
     @GetMapping("/doctor/all-status")
     public ResponseEntity<?> getAllAptByDoctor(){
         List<AppointmentStatus> list = appointmentService.getAllAptByDoctor();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-
+    // API thay đổi trạng thái cuộc hẹn
     @PostMapping("/admin/accept")
     public void accept(@RequestParam(value = "id") Long id, @RequestParam("status") String status){
         appointmentService.accept(id, status);
@@ -118,6 +122,7 @@ public class AppointmentResource {
         appointmentService.cancel(id);
     }
 
+    // API chọn bác sĩ thay thế
     @PostMapping("/public/changeDoctor")
     public void changeDoctor(@RequestParam("idapp") Long idapp, @RequestParam("iddoctor") Long iddoctor){
         appointmentService.changeDoctor(idapp, iddoctor);

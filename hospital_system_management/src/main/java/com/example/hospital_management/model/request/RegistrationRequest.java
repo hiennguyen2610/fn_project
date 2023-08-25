@@ -32,6 +32,8 @@ public class RegistrationRequest {
 
     DoctorLevel doctorLevel;
 
+    String level;
+
     @NotNull(message = "Danh sách chuyên khoa không được trống")
     @Size(min = 1, message = "Phải có ít nhất một chuyên khoa")
     long[] specialityIds;

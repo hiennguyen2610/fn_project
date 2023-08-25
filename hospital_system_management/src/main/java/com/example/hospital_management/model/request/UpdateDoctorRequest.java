@@ -25,5 +25,7 @@ public class UpdateDoctorRequest {
 
     DoctorLevel doctorLevel;
 
+    String level;
+
     long[] specialityIds;
 }

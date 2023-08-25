@@ -12,6 +12,7 @@ public class DiagnosisResource {
     @Autowired
     private DiagnosisService diagnosisService;
 
+    // API lưu kq thăm khám
     @GetMapping("/public/findByAppointment")
     public Diagnosis findByAppointment(@RequestParam("idApp") Long idApp){
         return diagnosisService.findByAppointment(idApp);

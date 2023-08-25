@@ -45,6 +45,7 @@ public class DoctorResource {
         return new ResponseEntity<>(page, HttpStatus.OK);
     }
 
+    // API tìm bác sĩ cùng chuyên khoa muốn thay đổi
     @GetMapping("/public/findDoctorBySpecialy")
     public List<Doctor> findBySpecialy(@RequestParam("idspecialy") Long idspecialy,@RequestParam("iddoctor") Long iddoctor){
         return doctorRepository.findBySpecialityAndDoctor(idspecialy, iddoctor);

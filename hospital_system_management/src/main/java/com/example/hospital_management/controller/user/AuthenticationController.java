@@ -14,6 +14,9 @@ import com.example.hospital_management.security.CustomUserDetails;
 import com.example.hospital_management.security.JwtUtils;
 import com.example.hospital_management.service.UserService;
 
+import com.example.hospital_management.statics.AppointmentStatus;
+import com.example.hospital_management.statics.DoctorLevel;
+import com.example.hospital_management.statics.Gender;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -99,6 +102,20 @@ public class AuthenticationController {
         return userRepository.findByEmail(request.getEmail())
                 .map(user -> new ResponseEntity<>("Email is existed", HttpStatus.BAD_REQUEST))
                 .orElseGet(() -> {
+                    for (DoctorLevel s : DoctorLevel.values()) {
+                        System.out.println("s: "+s.getName());
+                        System.out.println("s val: "+s.toString());
+                        System.out.println("s vals: "+s);
+                        System.out.println("request: "+request.getLevel());
+                        if (s.toString().equals(request.getLevel())){
+                            request.setDoctorLevel(s);
+                        }
+                    }
+//                    for (Gender s : Gender.values()) {
+//                        if (s.getName().equals(request.getGender())){
+//                            request.setGender(s.);
+//                        }
+//                    }
                     userService.registerDoctor(request);
                     return new ResponseEntity<>(null, HttpStatus.CREATED);
                 });

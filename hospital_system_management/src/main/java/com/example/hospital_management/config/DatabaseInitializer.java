@@ -50,7 +50,7 @@ public class DatabaseInitializer implements CommandLineRunner {
             if(admin.isEmpty()){
                 User user = new User();
                 user.setEmail("admin@gmail.com");
-                user.setPassword(passwordEncoder.encode("admin123")); // Encrypt the password
+                user.setPassword(passwordEncoder.encode("123456")); // Encrypt the password
                 Set<Role> roles = new HashSet<>();
                 roles.add(adminRole);
                 user.setRoles(roles);

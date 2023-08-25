@@ -14,6 +14,7 @@ import com.example.hospital_management.repository.AppointmentRepository;
 import com.example.hospital_management.repository.DoctorRepository;
 import com.example.hospital_management.repository.SpecialityRepository;
 import com.example.hospital_management.repository.UserRepository;
+import com.example.hospital_management.statics.DoctorLevel;
 import lombok.AllArgsConstructor;
 import org.sonatype.sisu.siesta.common.error.BadRequestException;
 import org.springframework.data.domain.Page;
@@ -89,7 +90,16 @@ public class DoctorService {
 
             doctor.setUser(user);
             doctor.setPhone(registrationRequest.getPhone());
-            doctor.setDoctorLevel(registrationRequest.getDoctorLevel());
+//            doctor.setDoctorLevel(registrationRequest.getDoctorLevel());
+            for (DoctorLevel s : DoctorLevel.values()) {
+                System.out.println("s: "+s.getName());
+                System.out.println("s val: "+s.toString());
+                System.out.println("s vals: "+s);
+                System.out.println("request: "+registrationRequest.getLevel());
+                if (s.toString().equals(registrationRequest.getLevel())){
+                    doctor.setDoctorLevel(s);
+                }
+            }
             doctor.setAddress(registrationRequest.getAddress());
             doctor.setIntroduce(registrationRequest.getIntroduce());
             doctor.setSpecialities(specialities);

@@ -9,6 +9,7 @@ async function searchAppointment(page) {
     var start = document.getElementById("start").value
     var end = document.getElementById("end").value
 
+    // Gửi yêu cầu tới API tìm kiếm cuộc hẹn, truyền vào các Param
     var url = 'http://localhost:8080/api/v1/appointment/admin/all?page='+page+"&size=3&param="+param;
     if(start != "" && start != null && end != null && end != ""){
         url += '&start='+start+'&end='+end;
@@ -24,7 +25,7 @@ async function searchAppointment(page) {
     var totalPage = result.totalPages
     var main = '';
 
-
+    // Gửi yêu cầu tới API lấy ra danh sách các trạng thái của cuộc hẹn mà ADMIN được sử dụng
     var urls = 'http://localhost:8080/api/v1/appointment/admin/all-status';
     const res = await fetch(urls, {
         method: 'GET',
@@ -80,6 +81,7 @@ async function searchAppointment(page) {
     document.getElementById("listpage").innerHTML = mainpage
 }
 
+// Chọn bác sĩ mới khi bác sĩ cũ từ chối
 async function showAdd(idspecialy, iddoctor,idappointment, ck){
     $('#chonbsmoi').modal("show");
     console.log((idspecialy))
@@ -105,6 +107,7 @@ function hideAdd(){
     $("#chonbsmoi").modal("hide");
 }
 
+// Chuyển trạng thái lịch hẹn
 async function activeApoi(id, status) {
     var con = confirm("Bạn chắc chắn muốn chuyển trạng thái lịch hẹn?");
     if(con){
@@ -122,6 +125,8 @@ async function activeApoi(id, status) {
         }
     }
 }
+
+// Chuyển bác sĩ
 var idapp = null;
 async function changeDoctor() {
     var iddoctor = document.getElementById("listdoctor").value;

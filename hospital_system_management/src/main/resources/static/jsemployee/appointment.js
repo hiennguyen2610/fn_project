@@ -115,6 +115,7 @@ async function activeApoi(id, status) {
     }
 }
 var idapp = null;
+
 async function changeDoctor() {
     var iddoctor = document.getElementById("listdoctor").value;
     var con = confirm("Xác nhận chuyển bác sĩ?");
@@ -135,6 +136,7 @@ async function changeDoctor() {
     }
 }
 
+// Xác nhận thanh toán
 async function confirmPay(id, status,e) {
     var str = 'Xác nhận thanh toán?'
     if(status == 1){
@@ -166,6 +168,7 @@ async function confirmPay(id, status,e) {
     }
 }
 
+// Hiển thị dịch vụ mà bác sĩ chỉ định
 async function loadDsDv(idApp){
     $("#chitietdv").modal('show');
     document.getElementById("idapps").innerHTML = idApp
@@ -193,7 +196,10 @@ async function loadDsDv(idApp){
     document.getElementById("listdvtvb").innerHTML = main
 }
 
+// In hóa đơn
 function printInvoice(){
+
+    // Lấy id chứa form cần in trong trang html
     var divToPrint=document.getElementById('tables');
 
     var newWin=window.open('','Print-Window');
@@ -206,6 +212,7 @@ function printInvoice(){
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body onload="window.print()">
+        <h2 style="text-align: center; margin-top: 40px; margin-bottom: 80px">BỆNH VIỆN ĐA KHOA QUỐC TẾ MEDIPLUS</h2>
         <h3 style="text-align: center; margin-bottom: 50px">HÓA ĐƠN KHÁM BỆNH</h3>
         ${divToPrint.innerHTML}
     </body>

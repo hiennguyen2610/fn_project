@@ -13,6 +13,7 @@ public interface DiagnosisDetailRepository extends JpaRepository <DiagnosisDetai
 
     List<DiagnosisDetail> findAllByService(Service service);
 
+    // Lấy ra DiagnosisDetail có id của appointment trùng với idApp
     @Query("select d from DiagnosisDetail d where d.appointment.id = ?1")
     List<DiagnosisDetail> findAllByAppointment(Long idApp);
 

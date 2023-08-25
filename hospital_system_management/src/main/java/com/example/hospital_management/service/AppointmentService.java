@@ -86,7 +86,6 @@ public class AppointmentService {
         Patient resultPa = patientRepository.save(patient);
 
         Doctor doctor = doctorRepository.findByUser(userService.getUserLogged(request).getId());
-        System.out.println("===========> doctor create: "+doctor.getId());
         Appointment appointment = new Appointment();
         appointment.setPaymentStatus(PaymentStatus.UNPAID);
         appointment.setAmount(0);
@@ -109,6 +108,7 @@ public class AppointmentService {
         return appointmentRepository.findByDoctor(doctorId, date);
     }
 
+    // Tìm cuộc hẹn từ admin
     public Page<Appointment> allApointment(Date start, Date end,String param,Pageable pageable){
         if(start == null || end == null){
             start = Date.valueOf("2000-01-01");
@@ -121,6 +121,7 @@ public class AppointmentService {
         return result;
     }
 
+    // Tìm cuộc hẹn từ nhân viên
     public Page<Appointment> allApointmentByEmp(Date start, Date end,String param,Pageable pageable){
         if(start == null || end == null){
             start = Date.valueOf("2000-01-01");
@@ -133,7 +134,7 @@ public class AppointmentService {
         return result;
     }
 
-
+    // Tìm cuộc hẹn từ bác sĩ
     public Page<Appointment> allApointmentByDoctor(Date start, Date end,String param,Pageable pageable, HttpServletRequest request){
         if(start == null || end == null){
             start = Date.valueOf("2000-01-01");
@@ -143,7 +144,6 @@ public class AppointmentService {
             param = "";
         }
         User user = userService.getUserLogged(request);
-        System.out.println("============ doctor ===============");
         System.out.println(user.getId());
         Page<Appointment> result = appointmentRepository.findByDoctor(start,end,"%"+param+"%", user.getId(),
                 AppointmentStatus.ADMIN_APPROVED, AppointmentStatus.DOCTOR_REJECTED,pageable);
@@ -152,12 +152,12 @@ public class AppointmentService {
 
     public List<Appointment> myAppointment(Date date,HttpServletRequest request){
         User user = userService.getUserLogged(request);
-        System.out.println("============ doctor ===============");
         System.out.println(user.getId());
         List<Appointment> result = appointmentRepository.findByDoctorUser(user.getId(),date);
         return result;
     }
 
+    // ADMIN chỉ được chọn "APPOINTMENT_ACCEPTED"
     public List<AppointmentStatus> getAllApt(){
         AppointmentStatus[] result = AppointmentStatus.values();
         List<AppointmentStatus> list = new LinkedList<>(Arrays.asList(result));
@@ -167,6 +167,7 @@ public class AppointmentService {
         return list;
     }
 
+    // DOCTOR chỉ được chọn "DOCTOR_REJECTED"
     public List<AppointmentStatus> getAllAptByDoctor(){
         AppointmentStatus[] result = AppointmentStatus.values();
         List<AppointmentStatus> list = new LinkedList<>(Arrays.asList(result));
@@ -178,11 +179,9 @@ public class AppointmentService {
 
     public void accept(Long id, String status){
         Optional<Appointment> appointment = appointmentRepository.findById(id);
-        System.out.println("============ status: "+status);
         if (appointment.isPresent()) {
             for (AppointmentStatus s : AppointmentStatus.values()) {
                 if (s.getName().equals(status)){
-                    System.out.println(s+"-0");
                     appointment.get().setAppointmentStatus(s);
                     appointmentRepository.save(appointment.get());
                     return;
@@ -202,6 +201,7 @@ public class AppointmentService {
         }
     }
 
+    // Chọn bác sĩ thay thế
     public void changeDoctor(Long idapp, Long iddoctor){
         Appointment appointment = appointmentRepository.findById(idapp).get();
         appointment.setAppointmentStatus(AppointmentStatus.APPOINTMENT_CREATED);

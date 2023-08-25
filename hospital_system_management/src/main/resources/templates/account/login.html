@@ -288,11 +288,7 @@
                     }
                     localStorage.setItem('userInfomation', JSON.stringify(userInfomation))
                     toastr.success("Đăng nhập thành công");
-                    if (data.roles[0] === "USER") {
-                        setTimeout(function () {
-                            window.location.href = 'http://localhost:8080'
-                        }, 1000)
-                    } else if (data.roles[0] === "ADMIN") {
+                    if (data.roles[0] === "ADMIN") {
                         window.location.href = 'http://localhost:8080/admin/dashboard'
                     }else if (data.roles[0] === "DOCTOR") {
                         window.location.href = 'http://localhost:8080/doctor/appointment'
@@ -302,7 +298,7 @@
                     }
                     },
                 error: function (data) {
-                    toastr.error("Mật khẩu hoặc tài khoản không chính xác!")
+                    toastr.error("Mật khẩu hoặc tài khoản không chính xác hoặc chưa được kích hoạt!")
                 },
             })
         })

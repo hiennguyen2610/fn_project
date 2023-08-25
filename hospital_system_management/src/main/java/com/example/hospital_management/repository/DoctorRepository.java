@@ -19,10 +19,10 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     @Query("select d from Doctor d where d.user.id = ?1")
     public Doctor findByUser(Long userId);
 
-
     @Query("select d from Doctor d inner join d.specialities sp where sp.id = ?1")
     public List<Doctor> findBySpeciality(Long idSpecialy);
 
+    // Lấy ra bsi có ID chuyên khoa trùng với idSpecialy và loại ra bsi có id trùng với idDoctor
     @Query("select d from Doctor d inner join d.specialities sp where sp.id = ?1 and d.id <> ?2")
     public List<Doctor> findBySpecialityAndDoctor(Long idSpecialy, Long iddoctor);
 
